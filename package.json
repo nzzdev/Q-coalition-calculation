@@ -1,14 +1,14 @@
 {
-  "name": "@nzz/q-party-slogans",
-  "version": "1.4.0",
-  "description": "Q Party Slogans",
+  "name": "@nzz/q-coalition-calculation",
+  "version": "1.0.0",
+  "description": "Q Coalition Calculation",
   "keywords": [
     "storytelling",
     "nzz"
   ],
-  "homepage": "https://github.com/nzzdev/Q-party-slogans/",
+  "homepage": "https://github.com/nzzdev/Q-coalition-calculation/",
   "bugs": {
-    "url": "https://github.com/nzzdev/Q-party-slogans/issues"
+    "url": "https://github.com/nzzdev/Q-coalition-calculation/issues"
   },
   "license": "",
   "contributors": [
@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/nzzdev/Q-party-slogans"
+    "url": "http://github.com/nzzdev/Q-coalition-calculation"
   },
   "dependencies": {
     "autoprefixer": "^7.1.1",
