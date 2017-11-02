@@ -6,58 +6,39 @@
     <title>Q Poll Result</title>
     <meta name="description" content="">
     <link rel="stylesheet" href="https://service.sophie.nzz.ch/bundle/sophie-q@^1.2.0-rc,sophie-font@^1.2.0-rc,sophie-color@^1.1.0-rc,sophie-viz-color@^1.2.0-rc[diverging-6].css">
+    <link rel="stylesheet" href="https://context-service.st.nzz.ch/stylesheet/all/nzz.ch.css">
     <script src="https://rawgit.com/filamentgroup/loadCSS/master/src/loadCSS.js"></script> 
   </head>
-  <body>
+  <body style="background:white">
     <div id="container">
-      <div id="slogans"></div>
+      <div id="coalition-calculation"></div>
     </div>
     <script>
       let data = {
         "item": {
-          "title": "Parolenspiegel zum Nationalstrassenfonds",
+          "title": "Diese Koalitionen sind nach den Wahlen möglich",
           "data": {
-            "yes": {
-              "parties": [
-                "CVP",
-                "FDP",
-                "GLP",
-                "SVP",
-                "BDP",
-                "EVP",
-                ""
-              ],
-              "organisations": [
-                "Astag",
-                "Economiesasdasdasdasdasdasdasdasuisse",
-                "Gemeindeverband",
-                "Gewerbeverband",
-                "Gewerkschaftsbund",
-                "Städteverband",
-                "TCS",
-                "Verband öffentlicher Verkehr",
-                ""
-              ]
+            "possibleCoalitions": [
+              [ "ÖVP", "SPÖ" ],
+              [ "ÖVP", "FPÖ" ],
+              [ "SPÖ", "FPÖ" ]
+            ],
+            "parties": {
+              "ÖVP": {
+                "seats": 62,
+                "color": "#0a0a0a"
+              },
+              "SPÖ": {
+                "seats": 52,
+                "color": "#c31906"
+              },
+              "FPÖ": {
+                "seats": 51,
+                "color": "#0084c7"
+              },
             },
-            "no": {
-              "parties": [
-                "Grüne",
-                "SP",
-                ""
-              ],
-              "organisations": [
-                "VCS",
-                ""
-              ]
-            },
-            "undecided": {
-              "parties": [
-                ""
-              ],
-              "organisations": [
-                ""
-              ]
-            }
+            "maxSeats": 183,
+            "majority": 92
           }
         }
       };
@@ -79,7 +60,7 @@
             }
             loadCSS(stylesheet.url)
           })
-          document.getElementById('slogans').innerHTML = data.markup;
+          document.getElementById('coalition-calculation').innerHTML = data.markup;
         })
     </script>
   </body>
