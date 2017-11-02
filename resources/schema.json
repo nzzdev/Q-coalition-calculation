@@ -7,73 +7,47 @@
       "title": "Titel",
       "type": "string"
     },
-    "data": {
-      "type": "object",
-      "title": "Daten",
-      "properties": {
-        "yes": {
-          "type": "object",
-          "title": "Ja Parole",
-          "properties": {
-            "parties": {
-              "type": "array",
-              "title": "Parteien",
-              "items": {
-                "type": "string",
-                "title": "Partei"
-              }
-            },
-            "organisations": {
-              "type": "array",
-              "title": "Organisationen",
-              "items": {
-                "type": "string",
-                "title": "Organisation"
-              }
-            }
+    "totalSeats": {
+      "type": "number",
+      "title": "Sitze insgesamt"
+    },
+    "parties": {
+      "type": "array",
+      "title": "Parteien",
+      "items": {
+        "type": "object",
+        "title": "Partei",
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Parteiname"
+          },
+          "seats": {
+            "type": "number",
+            "title": "Anzahl Sitze"
+          },
+          "color": {
+            "type": "string",
+            "Q:type": "color",
+            "title": "Parteifarbe"
           }
-        },
-        "no": {
-          "type": "object",
-          "title": "Nein Parole",
-          "properties": {
-            "parties": {
-              "type": "array",
-              "title": "Parteien",
-              "items": {
-                "type": "string",
-                "title": "Partei"
-              }
-            },
-            "organisations": {
-              "type": "array",
-              "title": "Organisationen",
-              "items": {
-                "type": "string",
-                "title": "Organisation"
-              }
-            }
-          }
-        },
-        "undecided": {
-          "type": "object",
-          "title": "Stimmfreigabe",
-          "properties": {
-            "parties": {
-              "type": "array",
-              "title": "Parteien",
-              "items": {
-                "type": "string",
-                "title": "Partei"
-              }
-            },
-            "organisations": {
-              "type": "array",
-              "title": "Organisationen",
-              "items": {
-                "type": "string",
-                "title": "Organisation"
-              }
+        }
+      }
+    },
+    "possibleCoalitions": {
+      "type": "array",
+      "title": "Mögliche Koalitionen",
+      "items": {
+        "title": "Koalition",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "title": "Partei",
+          "Q:options": {
+            "dynamicEnum": {
+              "type": "ToolEndpoint",
+              "withData": true,
+              "endpoint": "dynamic-enum/availableParties"
             }
           }
         }
