@@ -29,7 +29,16 @@
           "color": {
             "type": "string",
             "Q:type": "color",
-            "title": "Parteifarbe"
+            "title": "Parteifarbe",
+            "Q:options": {
+              "compact": true,
+              "availabilityChecks": [
+                {
+                  "type": "UserHasRole",
+                  "role": "expert-coalition-calculation"
+                }
+              ]
+            }
           }
         }
       }
@@ -49,6 +58,20 @@
               "withData": true,
               "endpoint": "dynamic-enum/availableParties"
             }
+          }
+        }
+      }
+    },
+    "options": {
+      "title": "Koalitionsoptionen",
+      "type": "object",
+      "properties": {
+        "hideTitle": {
+          "type": "boolean",
+          "default": false,
+          "Q:deprecated": true,
+          "Q:options": {
+            "hideInEditor": false
           }
         }
       }
