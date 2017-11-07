@@ -1,5 +1,7 @@
 <div class="q-item-container q-coalition-calculation" style="opacity: 0;">
-  <h3 class="s-q-item__title">{{ title }}</h3>
+  {{#if hideTitle !== true }}
+    <h3 class="s-q-item__title">{{title}}</h3>
+  {{/if}}
   {{ #each possibleCoalitions as coalition }}
   <div class="q-coalition-calculation-row">
     <div class="q-coalition-calculation-column s-color-gray-3 q-coalition-calculation-barchart-container">
@@ -25,6 +27,7 @@
 <script>
   export default {
     computed: {
+      hideTitle: (toolRuntimeConfig) => toolRuntimeConfig && toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle,
       majority: (totalSeats) => totalSeats % 2 === 0 ? totalSeats / 2 : Math.ceil(totalSeats / 2),
       getPercents: (totalSeats) => {
         let max = totalSeats;

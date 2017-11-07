@@ -30,6 +30,7 @@ module.exports = {
   },
   handler: function(request, reply) {
     let data = {
+      toolRuntimeConfig: request.payload.toolRuntimeConfig,
       stylesheets: [
         {
           name: styleHashMap.default
