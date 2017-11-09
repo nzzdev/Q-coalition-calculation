@@ -1,6 +1,6 @@
 'use strict';
 
-const init = async function () {
+const start = async function () {
 
   const Hapi = require('hapi');
   const Path = require('path');
@@ -28,4 +28,4 @@ const init = async function () {
 
 }
 
-init();
+start();

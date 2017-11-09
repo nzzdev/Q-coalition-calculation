@@ -1,9 +1,4 @@
 module.exports = {
-  "toolRuntimeConfig": {
-    "displayOptions": {
-      "hideTitle": false
-    }
-  },
   "title": "Diese Koalitionen sind nach den Wahlen möglich",
   "possibleCoalitions": [
     ["ÖVP", "SPÖ"],
