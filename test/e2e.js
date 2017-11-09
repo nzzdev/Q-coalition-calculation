@@ -36,7 +36,7 @@ const start = async function () {
   
     it('should return 200 for /stylesheet/default.123.css', async function() {
       try {
-        res = await server.inject('stylesheet/default.123.css');
+        res = await server.inject('/stylesheet/default.123.css');
       } catch (err) {
         return false;
       }
