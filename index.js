@@ -1,21 +1,31 @@
 'use strict';
 
-const Hapi = require('hapi');
-const Path = require('path');
-const Hoek = require('hoek');
+const init = async function () {
 
-const server = require('./server.js');
-const plugins = require('./server-plugins.js');
-const routes = require('./routes/routes.js');
-
-server.register(plugins, err => {
-  Hoek.assert(!err, err);
-
-  server.route(routes);
-
-  server.start(err => {
+  const Hapi = require('hapi');
+  const Path = require('path');
+  const Hoek = require('hoek');
+  
+  const server = require('./server.js');
+  const plugins = require('./server-plugins.js');
+  const routes = require('./routes/routes.js');
+  
+  try {
+    await server.register(plugins);
+  } catch (err) {
     Hoek.assert(!err, err);
-    console.log('Server running at: ', server.info.uri)
-  })
+  }
+  
+  server.route(routes);
+  
+  try {
+    await server.start();
+  } catch (err) {
+    Hoek.assert(!err, err);
+  }
 
-});
+  console.log('Server running at: ', server.info.uri)
+
+}
+
+init();

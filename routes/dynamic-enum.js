@@ -35,16 +35,16 @@ module.exports = {
     },
     cors: true
   },
-  handler: function(request, reply) {
+  handler: function(request, h) {
     if (request.params.optionName === 'availableParties') {
-      let parties = request.payload.parties.map(p => p.name);
+      let parties = request.payload.value.parties.map(p => p.name);
       let options = {
         enum: parties,
         enum_titles: parties
       };
-      return reply(options).type('application/json');
+      return options;
     }
 
-    return reply(Boom.badRequest());
+    return Boom.badRequest();
   }
 };

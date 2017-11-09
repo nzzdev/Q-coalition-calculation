@@ -28,7 +28,7 @@ module.exports = {
     cache: false, // do not send cache control header to let it be added by Q Server
     cors: true
   },
-  handler: function(request, reply) {
+  handler: function(request, h) {
     let data = {
       toolRuntimeConfig: request.payload.toolRuntimeConfig,
       stylesheets: [
@@ -38,6 +38,6 @@ module.exports = {
       ],
       markup: staticTpl.render(request.payload.item)
     }
-    return reply(data)
+    return data;
   }
 }
