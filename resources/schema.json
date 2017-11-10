@@ -27,9 +27,8 @@
             "title": "Anzahl Sitze"
           },
           "color": {
-            "type": "string",
-            "Q:type": "color",
             "title": "Parteifarbe",
+            "type": "object",
             "Q:options": {
               "compact": true,
               "availabilityChecks": [
@@ -38,6 +37,17 @@
                   "role": "expert-coalition-calculation"
                 }
               ]
+            },
+            "properties": {
+              "colorCode": {
+                "title": "Farbcode",
+                "type": "string",
+                "Q:type": "color"
+              },
+              "classAttribute": {
+                "title": "CSS Klassenname",
+                "type": "string"
+              }
             }
           }
         }

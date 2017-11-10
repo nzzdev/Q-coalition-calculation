@@ -10,17 +10,23 @@ module.exports = {
     {
       "name": "ÖVP",
       "seats": 62,
-      "color": "#0a0a0a"
+      "color": {
+        colorCode: "#0a0a0a"
+      }
     },
     {
       "name": "SPÖ",
       "seats": 52,
-      "color": "#c31906"
+      "color": {
+        colorCode: "#c31906"
+      }
     },
     {
       "name": "FPÖ",
       "seats": 51,
-      "color": "#0084c7"
+      "color": {
+        colorCode: "#0084c7"
+      }
     }
   ],
   "totalSeats": 183

@@ -2,13 +2,13 @@
   {{#if hideTitle !== true }}
     <h3 class="s-q-item__title">{{title}}</h3>
   {{/if}}
-  {{ #each possibleCoalitionsObjects as coalition }}
+  {{ #each augmentedPossibleCoalitions as coalition }}
   <div class="q-coalition-calculation-row">
     <div class="q-coalition-calculation-column s-color-gray-3 q-coalition-calculation-barchart-container">
       {{ #each coalition.parties as party }}
       <div 
-        class="q-coalition-calculation-barchart-bar" 
-        style="width:{{ getPercents(party.seats) }}%;background-color:{{ party.color }}"
+        class="{{ party.useClass ? party.color.classAttribute : '' }} q-coalition-calculation-barchart-bar" 
+        style="{{ party.barStyle }}"
         ></div>
       {{ /each }}
       <div class="q-coalition-calculation-barchart-label s-font-note-s s-font-note-s-strong" style="left:{{ getPercents(coalition.total) }}%;">{{ coalition.total }} Abgeordnete</div>
@@ -16,7 +16,7 @@
     </div>
     <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-text-s">
       {{ #each coalition.parties as party, i }}
-      <span class="s-font-text s-font-text--strong" style="color:{{ party.color }}">{{ party.name }}</span>{{ i + 1 < coalition.parties.length ? ' und ' : ' ' }}
+      <span class="s-font-text s-font-text--strong {{ party.useClass ? party.color.classAttribute : '' }}" style="{{ party.fontStyle }}">{{ party.name }}</span>{{ i + 1 < coalition.parties.length ? ' und ' : ' ' }}
       {{ /each }}
       komm{{ coalition.parties.length > 1 ? 'en gemeinsam' : 't' }} auf {{ coalition.total }} Abgeordnete ({{ getPercents(coalition.total) }}%).
     </div>
@@ -35,9 +35,21 @@
           return Math.round(seats / max * 100) 
         }
       },
-      possibleCoalitionsObjects: (possibleCoalitions, parties) => {
+      augmentedPossibleCoalitions: (possibleCoalitions, parties, getPercents) => {
         return possibleCoalitions.map(coalition => {
-          let coalitionParties = coalition.map(party => Object.assign({ name: party }, parties.find(p => p.name === party)));
+          let coalitionParties = coalition.map(party => {
+            let augmentedParty = Object.assign({ name: party }, parties.find(p => p.name === party));
+            augmentedParty.useClass = augmentedParty.color.classAttribute !== undefined && augmentedParty.color.classAttribute !== '';
+            augmentedParty.fontStyle = "";
+            augmentedParty.barStyle = `width:${ getPercents(augmentedParty.seats) }%;`;
+            if (augmentedParty.useClass) {
+              augmentedParty.barStyle += 'background-color:currentColor';
+            } else {
+              augmentedParty.fontStyle = `color: ${augmentedParty.color.colorCode}`
+              augmentedParty.barStyle += `background-color:${augmentedParty.color.colorCode}`
+            }
+            return augmentedParty;
+          });
           let totalSeats = coalitionParties.reduce((p, c) => p + c.seats, 0);
           return {
             parties: coalitionParties,
