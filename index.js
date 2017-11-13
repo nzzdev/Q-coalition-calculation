@@ -10,20 +10,12 @@ const start = async function () {
   const plugins = require('./server-plugins.js');
   const routes = require('./routes/routes.js');
   
-  try {
-    await server.register(plugins);
-  } catch (err) {
-    Hoek.assert(!err, err);
-  }
+  await server.register(plugins);
   
   server.route(routes);
   
-  try {
-    await server.start();
-  } catch (err) {
-    Hoek.assert(!err, err);
-  }
-
+  await server.start();
+  
   console.log('Server running at: ', server.info.uri)
 
 }
