@@ -11,7 +11,7 @@
         style="{{ party.barStyle }}"
         ></div>
       {{ /each }}
-      <div class="q-coalition-calculation-barchart-label s-font-note-s s-font-note-s-strong" style="left:{{ getPercents(coalition.total) }}%;">{{ coalition.total }} Abgeordnete</div>
+      <div class="q-coalition-calculation-barchart-label s-font-note-s s-font-note-s-strong" style="left: {{ getPercents(coalition.total) }}%;">{{ coalition.total }} Abgeordnete</div>
       <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-perc-label">Mehrheit: {{ majority }}</div>
     </div>
     <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-text-s">
@@ -32,29 +32,37 @@
       getPercents: (totalSeats) => {
         let max = totalSeats;
         return (seats) => {
-          return Math.round(seats / max * 100) 
+          return Math.round(seats / max * 100);
         }
       },
       augmentedPossibleCoalitions: (possibleCoalitions, parties, getPercents) => {
+        
+        // augment coaltion's party references with full data and calculate its seat total
         return possibleCoalitions.map(coalition => {
+          
           let coalitionParties = coalition.map(party => {
+            
+            // augment coaltion party with full party data using the party name as reference
             let augmentedParty = Object.assign({ name: party }, parties.find(p => p.name === party));
+            
+            // additionally augment the party with properties to render its name and bar chart markup 
             augmentedParty.useClass = augmentedParty.color.classAttribute !== undefined && augmentedParty.color.classAttribute !== '';
             augmentedParty.fontStyle = "";
-            augmentedParty.barStyle = `width:${ getPercents(augmentedParty.seats) }%;`;
+            augmentedParty.barStyle = `width: ${ getPercents(augmentedParty.seats) }%;`;
             if (augmentedParty.useClass) {
-              augmentedParty.barStyle += 'background-color:currentColor';
+              augmentedParty.barStyle += 'background-color: currentColor';
             } else {
               augmentedParty.fontStyle = `color: ${augmentedParty.color.colorCode}`
-              augmentedParty.barStyle += `background-color:${augmentedParty.color.colorCode}`
+              augmentedParty.barStyle += `background-color: ${augmentedParty.color.colorCode}`
             }
             return augmentedParty;
           });
+
           let totalSeats = coalitionParties.reduce((p, c) => p + c.seats, 0);
           return {
             parties: coalitionParties,
             total: totalSeats
-          }
+          };
         });
       }
     }
