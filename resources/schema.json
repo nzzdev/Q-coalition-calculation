@@ -8,23 +8,23 @@
       "type": "string"
     },
     "totalSeats": {
-      "type": "number",
-      "title": "Sitze insgesamt"
+      "title": "Sitze insgesamt",
+      "type": "number"
     },
     "parties": {
-      "type": "array",
       "title": "Parteien",
+      "type": "array",
       "items": {
-        "type": "object",
         "title": "Partei",
+        "type": "object",
         "properties": {
           "name": {
-            "type": "string",
-            "title": "Parteiname"
+            "title": "Parteiname",
+            "type": "string"
           },
           "seats": {
-            "type": "number",
-            "title": "Anzahl Sitze"
+            "title": "Anzahl Sitze",
+            "type": "number"
           },
           "color": {
             "title": "Parteifarbe",
@@ -60,8 +60,8 @@
         "title": "Koalition",
         "type": "array",
         "items": {
-          "type": "string",
           "title": "Partei",
+          "type": "string",
           "Q:options": {
             "dynamicEnum": {
               "type": "ToolEndpoint",
