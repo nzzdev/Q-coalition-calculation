@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const Enjoi = require('enjoi');
+const Boom = require('boom');
 const fs = require('fs');
 const resourcesDir = __dirname + '/../../resources/';
 const viewsDir     = __dirname + '/../../views/';
@@ -7,11 +7,36 @@ const viewsDir     = __dirname + '/../../views/';
 const styleHashMap = require(__dirname + `/../../styles/hashMap.json`);
 
 const schemaString = JSON.parse(fs.readFileSync(resourcesDir + 'schema.json', { encoding: 'utf-8'}));
-const schema = Enjoi(schemaString);
+
+const Ajv = require('ajv');
+const ajv = new Ajv();
+
+// add draft-04 support explicit
+ajv.addMetaSchema(require('ajv/lib/refs/json-schema-draft-04.json'));
+
+const validate = ajv.compile(schemaString);
+
+async function validatePayload(payload, options) {
+  if (typeof payload !== 'object') {
+    return Boom.badRequest();
+  }
+  if (typeof payload.item !== 'object') {
+    return Boom.badRequest();
+  }
+  if (typeof payload.toolRuntimeConfig !== 'object') {
+    return Boom.badRequest();
+  }
+  try {
+    validate(payload.item);
+  } catch (err) {
+    return Boom.badRequest(JSON.stringify(err));
+  }
+  return payload;
+};
+
 
 require('svelte/ssr/register');
 const staticTpl = require(`${viewsDir}/HtmlStatic.html`);
-
 module.exports = {
   method: 'POST',
   path:'/rendering-info/html-static',
@@ -20,10 +45,7 @@ module.exports = {
       options: {
         allowUnknown: true
       },
-      payload: {
-        item: schema,
-        toolRuntimeConfig: Joi.object()
-      }
+      payload: validatePayload
     },
     cache: false, // do not send cache control header to let it be added by Q Server
     cors: true
