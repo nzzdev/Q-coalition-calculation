@@ -1,13 +1,14 @@
 module.exports = {
   "title": "Diese Koalitionen sind nach den Wahlen möglich",
   "possibleCoalitions": [
-    ["ÖVP", "SPÖ"],
-    ["ÖVP", "FPÖ"],
-    ["SPÖ", "FPÖ"],
-    ["ÖVP"]
+    [ "partei1_övp", "partei1_spö" ],
+    [ "partei1_övp", "partei3_fpö" ],
+    [ "partei1_spö", "partei3_fpö" ],
+    [ "partei1_spö" ]
   ],
   "parties": [
     {
+      "id": "partei1_övp",
       "name": "ÖVP",
       "seats": 62,
       "color": {
@@ -15,6 +16,7 @@ module.exports = {
       }
     },
     {
+      "id": "partei1_spö",
       "name": "SPÖ",
       "seats": 52,
       "color": {
@@ -22,6 +24,7 @@ module.exports = {
       }
     },
     {
+      "id": "partei3_fpö",
       "name": "FPÖ",
       "seats": 51,
       "color": {

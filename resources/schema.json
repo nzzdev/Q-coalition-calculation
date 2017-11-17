@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "title": "Parteiparolen",
+  "title": "Koalitionsrechner",
   "properties": {
     "title": {
       "title": "Titel",
@@ -14,48 +14,27 @@
     "parties": {
       "title": "Parteien",
       "type": "array",
-      "items": {
-        "title": "Partei",
-        "type": "object",
-        "properties": {
-          "name": {
-            "title": "Parteiname",
-            "type": "string"
-          },
-          "seats": {
-            "title": "Anzahl Sitze",
-            "type": "number"
-          },
-          "color": {
-            "title": "Parteifarbe",
-            "type": "object",
-            "Q:options": {
-              "compact": true,
-              "availabilityChecks": [
-                {
-                  "type": "UserHasRole",
-                  "role": "expert-coalition-calculation"
-                }
-              ]
-            },
-            "properties": {
-              "colorCode": {
-                "title": "Farbcode",
-                "type": "string",
-                "Q:type": "color"
-              },
-              "classAttribute": {
-                "title": "CSS Klassenname",
-                "type": "string"
-              }
-            }
+      "Q:options": {
+        "availabilityChecks": [
+          {
+            "type": "ItemHasId",
+            "unavailableMessage": "Zuerst Titel erfassen und speichern um Parteien hinzuzufügen"
           }
-        }
-      }
+        ]
+      },
+      "items": {"$ref": "#/definitions/party"}
     },
     "possibleCoalitions": {
-      "type": "array",
       "title": "Mögliche Koalitionen",
+      "type": "array",
+      "Q:options": {
+        "availabilityChecks": [
+          {
+            "type": "ItemHasId",
+            "unavailableMessage": "Zuerst Titel erfassen und speichern um Koalitionen hinzuzufügen"
+          }
+        ]
+      },
       "items": {
         "title": "Koalition",
         "type": "array",
@@ -87,8 +66,56 @@
       }
     }
   },
+  "definitions": {
+    "party": {
+      "title": "Partei",
+      "type": "object",
+      "properties": {
+        "id": {"$ref": "#/definitions/partyId"},
+        "name": {
+          "title": "Parteiname",
+          "type": "string"
+        },
+        "seats": {
+          "title": "Anzahl Sitze",
+          "type": "number"
+        },
+        "color": {
+          "title": "Parteifarbe",
+          "type": "object",
+          "Q:options": {
+            "compact": true,
+            "availabilityChecks": [
+              {
+                "type": "UserHasRole",
+                "role": "expert-coalition-calculation"
+              }
+            ]
+          },
+          "properties": {
+            "colorCode": {
+              "title": "Farbcode",
+              "type": "string",
+              "Q:type": "color"
+            },
+            "classAttribute": {
+              "title": "CSS Klassenname",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "partyId": {
+      "type": "string",
+      "title": "ID",
+      "Q:default": "generatedId",
+      "Q:options": {
+        "hideInEditor": true
+      }
+    }
+  },
   "required": [
-    "title",
-    "data"
+    "title"
   ]
 }

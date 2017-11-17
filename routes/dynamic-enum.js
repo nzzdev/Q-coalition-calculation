@@ -12,10 +12,11 @@ module.exports = {
   },
   handler: function(request, h) {
     if (request.params.optionName === 'availableParties') {
-      let parties = request.payload.value.parties.map(p => p.name);
+      let partyNames = request.payload.value.parties.map(p => p.name);
+      let partyIds = request.payload.value.parties.map(p => p.id);
       let options = {
-        enum: parties,
-        enum_titles: parties
+        enum: [null].concat(partyIds),
+        enum_titles: ['keine'].concat(partyNames)
       };
       return options;
     }

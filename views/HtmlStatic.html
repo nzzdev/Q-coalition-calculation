@@ -1,6 +1,6 @@
 <div class="q-item-container q-coalition-calculation" style="opacity: 0;">
   {{#if hideTitle !== true }}
-    <h3 class="s-q-item__title">{{title}}</h3>
+    <h3 class="s-q-item__title">{{ title }}</h3>
   {{/if}}
   {{ #each augmentedPossibleCoalitions as coalition }}
   <div class="q-coalition-calculation-row">
@@ -36,15 +36,18 @@
         }
       },
       augmentedPossibleCoalitions: (possibleCoalitions, parties, getPercents) => {
-        
+
         // augment coaltion's party references with full data and calculate its seat total
         return possibleCoalitions.map(coalition => {
           
-          let coalitionParties = coalition.map(party => {
+          let coalitionParties = coalition.map(partyId => {
             
             // augment coaltion party with full party data using the party name as reference
-            let augmentedParty = Object.assign({ name: party }, parties.find(p => p.name === party));
-            
+            let augmentedParty = parties.find(p => p.id === partyId);
+            if (augmentedParty === undefined) {
+              return undefined;
+            }
+
             // additionally augment the party with properties to render its name and bar chart markup 
             augmentedParty.useClass = augmentedParty.color.classAttribute !== undefined && augmentedParty.color.classAttribute !== '';
             augmentedParty.fontStyle = "";
@@ -56,14 +59,19 @@
               augmentedParty.barStyle += `background-color: ${augmentedParty.color.colorCode}`
             }
             return augmentedParty;
-          });
+          }).filter(p => p !== undefined);
 
-          let totalSeats = coalitionParties.reduce((p, c) => p + c.seats, 0);
-          return {
-            parties: coalitionParties,
-            total: totalSeats
-          };
-        });
+          if (coalitionParties.length > 0) {
+            let totalSeats = coalitionParties.reduce((p, c) => p + c.seats, 0);
+            return {
+              parties: coalitionParties,
+              total: totalSeats
+            };
+          } else {
+            return undefined;
+          }
+
+        }).filter(c => c !== undefined);
       }
     }
   };
