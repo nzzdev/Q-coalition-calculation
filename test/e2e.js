@@ -26,29 +26,17 @@ const start = async function () {
   describe('Q required API', () => {
     
     it('should return 200 for /schema.json', async function() {
-      try {
-        res = await server.inject('/schema.json');
-      } catch (err) {
-        return false;
-      }
+      res = await server.inject('/schema.json');
       return expect(res.statusCode).to.be.equal(200);
     })
   
     it('should return 200 for /stylesheet/default.123.css', async function() {
-      try {
-        res = await server.inject('/stylesheet/default.123.css');
-      } catch (err) {
-        return false;
-      }
+      res = await server.inject('/stylesheet/default.123.css');
       return expect(res.statusCode).to.be.equal(200);
     });
     
     it('should return 404 for inexistent stylesheet', async function() {
-      try {
-        res = await server.inject('/stylesheet/inexisting.123.css');
-      } catch (err) {
-        return true;
-      }
+      res = await server.inject('/stylesheet/inexisting.123.css');
       return expect(res.statusCode).to.be.equal(404);
     });
 
@@ -60,25 +48,19 @@ const start = async function () {
   describe('rendering-info endpoints', () => {
     
     it('should return 200 for /rendering-info/html-static', async function() {
-      
-      try {
-        const request = {
-          method: 'POST',
-          url: '/rendering-info/html-static',
-          payload: JSON.stringify({
-            item: mockData,
-            "toolRuntimeConfig": {
-              "displayOptions": {
-                "hideTitle": false
-              }
+      const request = {
+        method: 'POST',
+        url: '/rendering-info/html-static',
+        payload: JSON.stringify({
+          item: mockData,
+          "toolRuntimeConfig": {
+            "displayOptions": {
+              "hideTitle": false
             }
-          })
-        };
-        res = await server.inject(request);
-      } catch (err) {
-        return false;
-      }
-      
+          }
+        })
+      };
+      res = await server.inject(request);
       return expect(res.statusCode).to.be.equal(200);
     })
   
