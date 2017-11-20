@@ -12,7 +12,7 @@
         ></div>
       {{ /each }}
       <div class="q-coalition-calculation-barchart-label s-font-note-s s-font-note-s-strong" style="left: {{ getPercents(coalition.total) }}%;">{{ coalition.total }} Abgeordnete</div>
-      <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-perc-label">Mehrheit: {{ majority }}</div>
+      <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-majority-label">Mehrheit: {{ majority }}</div>
     </div>
     <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-text-s">
       {{ #each coalition.parties as party, i }}
