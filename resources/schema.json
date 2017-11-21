@@ -15,6 +15,9 @@
       "title": "Parteien",
       "type": "array",
       "Q:options": {
+        "expandable": {
+          "itemLabelProperty": "name"
+        },
         "availabilityChecks": [
           {
             "type": "ItemHasId",
@@ -25,9 +28,12 @@
       "items": {"$ref": "#/definitions/party"}
     },
     "possibleCoalitions": {
-      "title": "Mögliche Koalitionen",
+      "title": "Koalitionen",
       "type": "array",
       "Q:options": {
+        "expandable": {
+          "itemLabelProperty": "name"
+        },
         "availabilityChecks": [
           {
             "type": "ItemHasId",
