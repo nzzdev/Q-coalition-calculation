@@ -16,7 +16,7 @@ module.exports = {
       let partyIds = request.payload.value.parties.map(p => p.id);
       let options = {
         enum: [null].concat(partyIds),
-        enum_titles: ['keine'].concat(partyNames)
+        enum_titles: [''].concat(partyNames)
       };
       return options;
     }

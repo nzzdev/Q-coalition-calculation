@@ -45,15 +45,22 @@
         "title": "Koalition",
         "type": "array",
         "items": {
-          "title": "Partei",
-          "type": "string",
-          "Q:options": {
-            "dynamicEnum": {
-              "type": "ToolEndpoint",
-              "withData": true,
-              "endpoint": "dynamic-enum/availableParties"
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "title": "Partei",
+              "type": "string",
+              "Q:options": {
+                "dynamicEnum": {
+                  "type": "ToolEndpoint",
+                  "withData": true,
+                  "endpoint": "dynamic-enum/availableParties"
+                }
+              }
             }
-          }
+          ]
         }
       }
     },
