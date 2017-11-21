@@ -3,14 +3,17 @@
   "type": "object",
   "title": "Koalitionsrechner",
   "properties": {
+    
     "title": {
       "title": "Titel",
       "type": "string"
     },
+
     "totalSeats": {
       "title": "Sitze insgesamt",
       "type": "number"
     },
+
     "parties": {
       "title": "Parteien",
       "type": "array",
@@ -26,7 +29,9 @@
         ]
       },
       "items": {"$ref": "#/definitions/party"}
+    
     },
+
     "possibleCoalitions": {
       "title": "Koalitionen",
       "type": "array",
@@ -45,25 +50,37 @@
         "title": "Koalition",
         "type": "array",
         "items": {
-          "oneOf": [
-            {
-              "type": "null"
-            },
-            {
-              "title": "Partei",
-              "type": "string",
-              "Q:options": {
-                "dynamicEnum": {
-                  "type": "ToolEndpoint",
-                  "withData": true,
-                  "endpoint": "dynamic-enum/availableParties"
+          "title": "Partei",
+          "type": "object",
+          "properties": {
+            "id": {
+              "title": "Parteien ID",
+              "oneOf": [
+                {
+                  "title": "options",
+                  "type": "string",
+                  "Q:options": {
+                    "dynamicEnum": {
+                      "type": "ToolEndpoint",
+                      "withData": true,
+                      "endpoint": "dynamic-enum/availableParties"
+                    }
+                  }
+                },
+                {
+                  "type": "null"
                 }
-              }
+              ]
+            },
+            "note": {
+              "title": "Notiz",
+              "type": "string"
             }
-          ]
+          }
         }
       }
     },
+    
     "notes": {
       "title": "Anmerkungen",
       "type": "string"
