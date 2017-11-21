@@ -2,7 +2,7 @@
   {{#if hideTitle !== true && title }}
     <h3 class="s-q-item__title">{{ title }}</h3>
   {{/if}}
-  {{ #each augmentedPossibleCoalitions as coalition }}
+  {{ #each augmentedPossibleCoalitions as coalition, i }}
   <div class="q-coalition-calculation-row">
     <div class="q-coalition-calculation-column s-color-gray-3 q-coalition-calculation-barchart-container">
       {{ #each coalition.parties as party }}
@@ -11,20 +11,20 @@
         style="{{ party.barStyle }}"
         ></div>
       {{ /each }}
-      <div class="q-coalition-calculation-barchart-label s-font-note-s s-font-note-s-strong" style="left: {{ getPercents(coalition.total) }}%;">{{ coalition.total }} Abgeordnete</div>
-      <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-majority-label">Mehrheit: {{ majority }}</div>
+      <div class="q-coalition-calculation-barchart-label s-font-note-s s-font-note-s-strong" style="left: {{ coalition.totalPercents }}%;">{{ coalition.totalSeats }}{{ i === 0 ? " Abgeordnete" : "" }}</div>
+      <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-majority-label">{{ i === 0 ? "Mehrheit: " : "" }}{{ majority }}</div>
     </div>
     <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-text-s">
       {{ #each coalition.parties as party, i }}
       <span class="s-font-text s-font-text--strong {{ party.useClass ? party.color.classAttribute : '' }}" style="{{ party.fontStyle }}">{{ party.name }}</span>{{ i + 1 < coalition.parties.length ? ' und ' : ' ' }}
       {{ /each }}
-      komm{{ coalition.parties.length > 1 ? 'en gemeinsam' : 't' }} auf {{ coalition.total }} Abgeordnete ({{ getPercents(coalition.total) }}%).
+      komm{{ coalition.parties.length > 1 ? 'en gemeinsam' : 't' }} auf {{ coalition.totalSeats }} Abgeordnete ({{ coalition.totalPercents }}%).
     </div>
   </div>
   {{ /each }}
   {{ #if notes }}
   <div class="s-q-item__footer">
-    <span>{{ notes }}</span>
+    <span class="s-q-item__footer__notes">{{ notes }}</span>
   </div>
   {{/if}}
 </div>
@@ -34,17 +34,13 @@
     computed: {
       hideTitle: (toolRuntimeConfig) => toolRuntimeConfig && toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle,
       majority: (totalSeats) => Math.floor(totalSeats / 2 + 1),
-      getPercents: (totalSeats) => {
-        let max = totalSeats;
-        return (seats) => {
-          return Math.round(seats / max * 100);
-        }
-      },
-      augmentedPossibleCoalitions: (possibleCoalitions, parties, getPercents) => {
-
+      augmentedPossibleCoalitions: (totalSeats, possibleCoalitions, parties) => {
+        
         // augment coaltion's party references with full data and calculate its seat total
         return possibleCoalitions.map(coalition => {
           
+          let totalCoalitionPercents = 0;
+          let totalCoalitionSeats = 0;
           let coalitionParties = coalition.map(partyId => {
             
             // augment coaltion party with full party data using the party name as reference
@@ -52,11 +48,14 @@
             if (augmentedParty === undefined) {
               return undefined;
             }
-
+            
             // additionally augment the party with properties to render its name and bar chart markup 
             augmentedParty.useClass = augmentedParty.color.classAttribute !== undefined && augmentedParty.color.classAttribute !== '';
             augmentedParty.fontStyle = "";
-            augmentedParty.barStyle = `width: ${ getPercents(augmentedParty.seats) }%;`;
+            const partyPercents = Math.round(augmentedParty.seats / totalSeats * 100);
+            totalCoalitionPercents += partyPercents;
+            totalCoalitionSeats += augmentedParty.seats;
+            augmentedParty.barStyle = `width: ${ partyPercents }%;`;
             if (augmentedParty.useClass) {
               augmentedParty.barStyle += 'background-color: currentColor';
             } else {
@@ -67,10 +66,10 @@
           }).filter(p => p !== undefined);
 
           if (coalitionParties.length > 0) {
-            let totalSeats = coalitionParties.reduce((p, c) => p + c.seats, 0);
             return {
               parties: coalitionParties,
-              total: totalSeats
+              totalPercents: totalCoalitionPercents,
+              totalSeats: totalCoalitionSeats
             };
           } else {
             return undefined;
