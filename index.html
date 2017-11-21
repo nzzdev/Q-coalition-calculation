@@ -5,60 +5,55 @@
     <meta charset="utf-8">
     <title>Q Poll Result</title>
     <meta name="description" content="">
-    <link rel="stylesheet" href="https://service.sophie.nzz.ch/bundle/sophie-q@^1.2.0-rc,sophie-font@^1.2.0-rc,sophie-color@^1.1.0-rc,sophie-viz-color@^1.2.0-rc[diverging-6].css">
+    <link rel="stylesheet" href="https://service.sophie.nzz.ch/bundle/sophie-q@^1,sophie-font@^1,sophie-color@^1,sophie-viz-color@^1[diverging-6].css">
+    <link rel="stylesheet" href="https://context-service.st.nzz.ch/stylesheet/all/nzz.ch.css">
     <script src="https://rawgit.com/filamentgroup/loadCSS/master/src/loadCSS.js"></script> 
   </head>
-  <body>
+  <body style="background:white">
     <div id="container">
-      <div id="slogans"></div>
+      <div id="coalition-calculation"></div>
     </div>
     <script>
       let data = {
-        "item": {
-          "title": "Parolenspiegel zum Nationalstrassenfonds",
-          "data": {
-            "yes": {
-              "parties": [
-                "CVP",
-                "FDP",
-                "GLP",
-                "SVP",
-                "BDP",
-                "EVP",
-                ""
-              ],
-              "organisations": [
-                "Astag",
-                "Economiesasdasdasdasdasdasdasdasuisse",
-                "Gemeindeverband",
-                "Gewerbeverband",
-                "Gewerkschaftsbund",
-                "Städteverband",
-                "TCS",
-                "Verband öffentlicher Verkehr",
-                ""
-              ]
-            },
-            "no": {
-              "parties": [
-                "Grüne",
-                "SP",
-                ""
-              ],
-              "organisations": [
-                "VCS",
-                ""
-              ]
-            },
-            "undecided": {
-              "parties": [
-                ""
-              ],
-              "organisations": [
-                ""
-              ]
-            }
+        "toolRuntimeConfig": {
+          "displayOptions": {
+            "hideTitle": false
           }
+        },
+        "item": {
+          "title": "Diese Koalitionen sind nach den Wahlen möglich",
+          "possibleCoalitions": [
+            [ "partei1_övp", "partei1_spö" ],
+            [ "partei1_övp", "partei3_fpö" ],
+            [ "partei1_spö", "partei3_fpö" ]
+          ],
+          "parties": [
+            {
+              "id": "partei1_övp",
+              "name": "ÖVP",
+              "seats": 62,
+              "color": {
+                colorCode: "#0a0a0a"
+              }
+            },
+            {
+              "id": "partei1_spö",
+              "name": "SPÖ",
+              "seats": 52,
+              "color": {
+                colorCode: "#c31906"
+              }
+            },
+            {
+              "id": "partei3_fpö",
+              "name": "FPÖ",
+              "seats": 51,
+              "color": {
+                colorCode: "#0084c7"
+              }
+            }
+          ],
+          "totalSeats": 183
         }
       };
 
@@ -79,7 +74,7 @@
             }
             loadCSS(stylesheet.url)
           })
-          document.getElementById('slogans').innerHTML = data.markup;
+          document.getElementById('coalition-calculation').innerHTML = data.markup;
         })
     </script>
   </body>

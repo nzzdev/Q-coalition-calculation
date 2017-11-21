@@ -1,34 +1,36 @@
 module.exports = {
-  title: 'nisi est',
-  data: {
-    no: {
-      parties: [
-        'pariatur sit sunt',
-        'ullamco'
-      ],
-      organisations: [
-        'laborum ve',
-        'ea quis exercitation officia'
-      ]
+  "title": "Diese Koalitionen sind nach den Wahlen möglich",
+  "possibleCoalitions": [
+    [ "partei1_övp", "partei1_spö" ],
+    [ "partei1_övp", "partei3_fpö" ],
+    [ "partei1_spö", "partei3_fpö" ],
+    [ "partei1_spö" ]
+  ],
+  "parties": [
+    {
+      "id": "partei1_övp",
+      "name": "ÖVP",
+      "seats": 62,
+      "color": {
+        colorCode: "#0a0a0a"
+      }
     },
-    yes: {
-      parties: [
-        'ut',
-        ''
-      ],
-      organisations: [
-        '',
-      ]
+    {
+      "id": "partei1_spö",
+      "name": "SPÖ",
+      "seats": 52,
+      "color": {
+        colorCode: "#c31906"
+      }
     },
-    undecided: {
-      parties: [
-        'deserunt elit esse quis occaecat',
-        'irure tempor minim eu',
-        'magna'
-      ],
-      organisations: [
-        'sed id Ut si'
-      ]
+    {
+      "id": "partei3_fpö",
+      "name": "FPÖ",
+      "seats": 51,
+      "color": {
+        colorCode: "#0084c7"
+      }
     }
-  }
+  ],
+  "totalSeats": 183
 }
