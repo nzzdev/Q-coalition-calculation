@@ -28,7 +28,7 @@
   export default {
     computed: {
       hideTitle: (toolRuntimeConfig) => toolRuntimeConfig && toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle,
-      majority: (totalSeats) => totalSeats % 2 === 0 ? totalSeats / 2 : Math.ceil(totalSeats / 2),
+      majority: (totalSeats) => Math.floor(totalSeats / 2 + 1),
       getPercents: (totalSeats) => {
         let max = totalSeats;
         return (seats) => {
