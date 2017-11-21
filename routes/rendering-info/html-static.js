@@ -53,7 +53,7 @@ module.exports = {
   handler: function(request, h) {
 
     // gray levels are limited to these specific ones because others are either used or too light
-    const defaultGrayLevels = [3, 5, 6, 7, 8, 9];
+    const defaultGrayLevels = [4, 5, 6, 7, 8, 9];
 
     // if party has no color we assign a gray level as default
     request.payload.item.parties.map((party, index) => {
