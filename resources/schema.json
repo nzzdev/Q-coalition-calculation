@@ -57,19 +57,9 @@
         }
       }
     },
-    "options": {
-      "title": "Koalitionsoptionen",
-      "type": "object",
-      "properties": {
-        "hideTitle": {
-          "type": "boolean",
-          "default": false,
-          "Q:deprecated": true,
-          "Q:options": {
-            "hideInEditor": false
-          }
-        }
-      }
+    "notes": {
+      "title": "Anmerkungen",
+      "type": "string"
     }
   },
   "definitions": {

@@ -65,15 +65,18 @@ module.exports = {
       return party;
     })
 
-    let data = {
+    let renderData = Object.assign({ toolRuntimeConfig: request.payload.toolRuntimeConfig }, request.payload.item );
+
+    let responseData = {
       toolRuntimeConfig: request.payload.toolRuntimeConfig,
       stylesheets: [
         {
           name: styleHashMap.default
         }
       ],
-      markup: staticTpl.render(request.payload.item)
+      markup: staticTpl.render(renderData)
     }
-    return data;
+    
+    return responseData;
   }
 }
