@@ -56,7 +56,6 @@
             "id": {
               "oneOf": [
                 {
-                  "title": "options",
                   "type": "string"
                 },
                 {
