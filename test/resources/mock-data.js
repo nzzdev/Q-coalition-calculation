@@ -3,7 +3,7 @@ module.exports = {
   "possibleCoalitions": [
     [ {"id":"partei1_övp"}, {"id":"partei1_spö"} ],
     [ {"id":"partei1_övp"}, {"id":"partei3_fpö"} ],
-    [ {"id":"partei1_spö"}, {"id":"partei3_fpö"} ],
+    [ {"id":"partei1_spö"}, {"id":"partei3_fpö"}, {"id":"partei1_spö"} ],
     [ {"id":"partei1_spö"} ]
   ],
   "parties": [

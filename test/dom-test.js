@@ -29,7 +29,7 @@ function elementCount(selector) {
 // basic tests, could be extended in dependence of mock data
 describe('Q coalition calculation markup check', function() {
   
-  it('should pass if 3 row DOM elements are found', function() {
+  it('should pass if 4 row DOM elements are found', function() {
     return elementCount('div.q-coalition-calculation-row').then(value => {
       expect(value).to.be.equal(4);
     })
@@ -47,9 +47,9 @@ describe('Q coalition calculation markup check', function() {
     })
   })
   
-  it('should pass if 7 barchart-bar DOM elements are found', function() {
+  it('should pass if 8 barchart-bar DOM elements are found', function() {
     return elementCount('div.q-coalition-calculation-barchart-bar').then(value => {
-      expect(value).to.be.equal(7);
+      expect(value).to.be.equal(8);
     })
   })
 
