@@ -41,8 +41,7 @@
         },
         "availabilityChecks": [
           {
-            "type": "ItemHasId",
-            "unavailableMessage": "Zuerst Titel erfassen und speichern um Koalitionen hinzuzufügen"
+            "type": "ItemHasId"
           }
         ]
       },
@@ -50,7 +49,7 @@
         "title": "Koalition",
         "type": "array",
         "items": {
-          "title": "Partei",
+          "title": "Partei zu Koalition",
           "type": "object",
           "properties": {
             "id": {
