@@ -16,9 +16,8 @@
     </div>
     <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-text-s">
       {{ #each coalition.parties as party, i }}
-      <span class="s-font-text s-font-text--strong {{ party.useClass ? party.color.classAttribute : '' }}" style="{{ party.fontStyle }}">{{ party.name }}</span>{{ i + 1 < coalition.parties.length ? ( i + 2  === coalition.parties.length ? ' und ' : ', ') : ' ' }}
-      {{ /each }}
-      komm{{ coalition.parties.length > 1 ? 'en gemeinsam' : 't' }} auf {{ coalition.totalSeats }} Abgeordnete ({{ coalition.totalPercents }}%).
+      <span class="s-font-text s-font-text--strong {{ party.useClass ? party.color.classAttribute : '' }}" style="{{ party.fontStyle }}">{{ party.name }}</span>{{ i + 1 < coalition.parties.length ? ( i + 2  === coalition.parties.length ? ' und' : ',') : '' }}
+      {{ /each }}komm{{ coalition.parties.length > 1 ? 'en gemeinsam' : 't' }} auf {{ coalition.totalSeats }} Abgeordnete ({{ coalition.totalPercents }}%).
     </div>
   </div>
   {{ /each }}
