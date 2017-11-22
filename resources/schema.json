@@ -54,7 +54,6 @@
           "type": "object",
           "properties": {
             "id": {
-              "title": "Parteien ID",
               "oneOf": [
                 {
                   "title": "options",

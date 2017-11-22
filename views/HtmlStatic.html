@@ -41,10 +41,14 @@
           
           let totalCoalitionPercents = 0;
           let totalCoalitionSeats = 0;
-          let coalitionParties = coalition.map(partyId => {
+          let coalitionParties = coalition.map(party => {
             
+            if (party === null) {
+              return undefined;
+            }
+
             // augment coaltion party with full party data using the party name as reference
-            let augmentedParty = parties.find(p => p.id === partyId);
+            let augmentedParty = parties.find(p => p.id === party.id);
             if (augmentedParty === undefined) {
               return undefined;
             }
