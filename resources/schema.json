@@ -1,87 +1,134 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "title": "Parteiparolen",
+  "title": "Koalitionsrechner",
   "properties": {
+    
     "title": {
       "title": "Titel",
       "type": "string"
     },
-    "data": {
-      "type": "object",
-      "title": "Daten",
-      "properties": {
-        "yes": {
-          "type": "object",
-          "title": "Ja Parole",
-          "properties": {
-            "parties": {
-              "type": "array",
-              "title": "Parteien",
-              "items": {
-                "type": "string",
-                "title": "Partei"
-              }
-            },
-            "organisations": {
-              "type": "array",
-              "title": "Organisationen",
-              "items": {
-                "type": "string",
-                "title": "Organisation"
-              }
-            }
-          }
+
+    "totalSeats": {
+      "title": "Sitze insgesamt",
+      "type": "number"
+    },
+
+    "parties": {
+      "title": "Parteien",
+      "type": "array",
+      "Q:options": {
+        "expandable": {
+          "itemLabelProperty": "name"
         },
-        "no": {
-          "type": "object",
-          "title": "Nein Parole",
-          "properties": {
-            "parties": {
-              "type": "array",
-              "title": "Parteien",
-              "items": {
-                "type": "string",
-                "title": "Partei"
-              }
-            },
-            "organisations": {
-              "type": "array",
-              "title": "Organisationen",
-              "items": {
-                "type": "string",
-                "title": "Organisation"
-              }
-            }
+        "availabilityChecks": [
+          {
+            "type": "ItemHasId",
+            "unavailableMessage": "Zuerst Titel erfassen und speichern um Parteien hinzuzufügen"
           }
+        ]
+      },
+      "items": {"$ref": "#/definitions/party"}
+    
+    },
+
+    "possibleCoalitions": {
+      "title": "Koalitionen",
+      "type": "array",
+      "Q:options": {
+        "expandable": {
+          "itemLabelProperty": "name"
         },
-        "undecided": {
+        "availabilityChecks": [
+          {
+            "type": "ItemHasId"
+          }
+        ]
+      },
+      "items": {
+        "title": "Koalition",
+        "type": "array",
+        "items": {
+          "title": "Partei zu Koalition",
           "type": "object",
-          "title": "Stimmfreigabe",
           "properties": {
-            "parties": {
-              "type": "array",
-              "title": "Parteien",
-              "items": {
-                "type": "string",
-                "title": "Partei"
-              }
-            },
-            "organisations": {
-              "type": "array",
-              "title": "Organisationen",
-              "items": {
-                "type": "string",
-                "title": "Organisation"
+            "id": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "Q:options": {
+                "dynamicEnum": {
+                  "type": "ToolEndpoint",
+                  "withData": true,
+                  "endpoint": "dynamic-enum/availableParties"
+                }
               }
             }
           }
         }
       }
+    },
+    
+    "notes": {
+      "title": "Anmerkungen",
+      "type": "string"
+    }
+  },
+  "definitions": {
+    "party": {
+      "title": "Partei",
+      "type": "object",
+      "properties": {
+        "id": {"$ref": "#/definitions/partyId"},
+        "name": {
+          "title": "Parteiname",
+          "type": "string"
+        },
+        "seats": {
+          "title": "Anzahl Sitze",
+          "type": "number"
+        },
+        "color": {
+          "title": "Parteifarbe",
+          "type": "object",
+          "Q:options": {
+            "compact": true,
+            "availabilityChecks": [
+              {
+                "type": "UserHasRole",
+                "role": "expert-coalition-calculation"
+              }
+            ]
+          },
+          "properties": {
+            "colorCode": {
+              "title": "Farbcode",
+              "type": "string",
+              "Q:type": "color"
+            },
+            "classAttribute": {
+              "title": "CSS Klassenname",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "partyId": {
+      "type": "string",
+      "title": "ID",
+      "Q:default": "generatedId",
+      "Q:options": {
+        "hideInEditor": true
+      }
     }
   },
   "required": [
-    "title",
-    "data"
+    "title"
   ]
 }

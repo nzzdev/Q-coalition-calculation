@@ -27,35 +27,31 @@ function elementCount(selector) {
 }
 
 // basic tests, could be extended in dependence of mock data
-describe('Q party paroles markup check', function() {
-  it('should pass if 3 level 1 DOM elements are found', function() {
-    return elementCount('div.q-party-slogans-label--level1').then(value => {
-      expect(value).to.be.equal(3);
+describe('Q coalition calculation markup check', function() {
+  
+  it('should pass if 4 row DOM elements are found', function() {
+    return elementCount('div.q-coalition-calculation-row').then(value => {
+      expect(value).to.be.equal(4);
     })
   })
 
-  it('should not render level--2 with only one empty string', function() {
-    return elementCount('div.q-party-slogans-label--level2').then(value => {
-      expect(value).to.be.at.equal(5);
+  it('should pass if 4 description container DOM elements are found', function() {
+    return elementCount('div.q-coalition-calculation-description-container').then(value => {
+      expect(value).to.be.equal(4);
+    })
+  })
+  
+  it('should pass if 8 column DOM elements are found', function() {
+    return elementCount('div.q-coalition-calculation-column').then(value => {
+      expect(value).to.be.equal(8);
+    })
+  })
+  
+  it('should pass if 8 barchart-bar DOM elements are found', function() {
+    return elementCount('div.q-coalition-calculation-barchart-bar').then(value => {
+      expect(value).to.be.equal(8);
     })
   })
 
-  it('should pass if not level 3 DOM element are found', function() {
-    return elementCount('div.q-party-slogans-label--level3').then(value => {
-      expect(value).to.be.equal(0);
-    })
-  })
-
-  it('should pass if level 1 DOM element is found', function() {
-    return element('.s-q-item__title').then(element => {
-      expect(element.innerHTML).to.be.equal('nisi est');
-    })
-  })
-
-  it('should not render empty parties or organisations', function() {
-    return elementCount('.q-party-slogans-position:first-of-type .q-party-slogans-voices:nth-child(2) .q-party-slogans-voice').then(value => {
-      expect(value).to.be.equal(1);
-    })
-  })
 })
 

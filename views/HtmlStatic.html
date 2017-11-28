@@ -1,67 +1,88 @@
-<div class="q-item-container q-party-slogans" style="opacity: 0;">
-  <h3 class="s-q-item__title">{{title}}</h3>
-  {{#each positions as position}}
-    {{#if (data[position.name].parties.length > 0 && data[position.name].parties[0].length > 0) || (data[position.name].organisations.length > 0 && data[position.name].organisations[0].length > 0)}}
-      <div class="q-party-slogans-position">
-        <div class="s-font-note-s s-font-note-s--strong ${position.labelColorClass} q-party-slogans-label--level1">{{position.label.toUpperCase()}}</div>
-
-        {{#if data[position.name].parties.length > 0 && data[position.name].parties[0].length > 0}}
-          <div class="q-party-slogans-voices">
-            <div class="s-font-note-s q-party-slogans-label--level2">Parteien</div>
-            <div class="s-font-text q-party-slogans-voices-container">
-              {{#each data[position.name].parties as party}}
-                {{#if party.length > 0}}
-                  <div class="{{position.voiceColorClass}} q-party-slogans-voice"><div class="s-font-text">{{party}}</div></div>
-                {{/if}}
-              {{/each}}
-            </div>
-          </div>
-        {{/if}}
-
-        {{#if data[position.name].organisations.length > 0 && data[position.name].organisations[0].length > 0}}
-          <div class="q-party-slogans-voices">
-            <div class="s-font-note-s q-party-slogans-label--level2">Organisationen und Verbände</div>
-            <div class="s-font-text q-party-slogans-voices-container">
-              {{#each data[position.name].organisations as organisation}}
-                {{#if organisation.length > 0}}
-                  <div class="{{position.voiceColorClass}} q-party-slogans-voice"><div class="s-font-text">{{organisation}}</div></div>
-                {{/if}}
-              {{/each}}
-            </div>
-          </div>
-        {{/if}}
-
-      </div>
-    {{/if}}
-  {{/each}}
+<div class="q-item-container q-coalition-calculation" style="opacity: 0;">
+  {{ #if hideTitle !== true && title }}
+    <h3 class="s-q-item__title">{{ title }}</h3>
+  {{ /if }}
+  {{ #each augmentedPossibleCoalitions as coalition, i }}
+  <div class="q-coalition-calculation-row">
+    <div class="q-coalition-calculation-column s-color-gray-3 q-coalition-calculation-barchart-container">
+      {{ #each coalition.parties as party }}
+      <div 
+        class="{{ party.useClass ? party.color.classAttribute : '' }} q-coalition-calculation-barchart-bar" 
+        style="{{ party.barStyle }}"
+        ></div>
+      {{ /each }}
+      {{ #if totalSeats && coalition.totalSeats > 0}}
+      <div class="q-coalition-calculation-barchart-label s-font-note-s s-font-note-s-strong" style="left: {{ coalition.totalPercents }}%;">{{ coalition.totalSeats }}{{ i === 0 ? " Abgeordnete" : "" }}</div>
+      <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-majority-label">{{ i === 0 ? "Mehrheit: " : "" }}{{ majority }}</div>
+      {{ elseif i === 0 }}
+      <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-majority-label">Mehrheit</div>
+      {{ /if }}
+    </div>
+    <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-text-s">
+      {{ #each coalition.parties as party, i }}
+      <span class="s-font-text s-font-text--strong {{ party.useClass ? party.color.classAttribute : '' }}" style="{{ party.fontStyle }}">{{ party.name }}</span>{{ i + 1 < coalition.parties.length ? ( i + 2  === coalition.parties.length ? ' und' : ',') : '' }}
+      {{ /each }}komm{{ coalition.parties.length > 1 ? 'en gemeinsam' : 't' }} auf {{ coalition.totalSeats }} Abgeordnete ({{ coalition.totalPercents }}%).
+    </div>
+  </div>
+  {{ /each }}
+  {{ #if notes }}
+  <div class="s-q-item__footer">
+    <span class="s-q-item__footer__notes">{{ notes }}</span>
+  </div>
+  {{/if}}
 </div>
 
 <script>
-  const positions = [
-    {
-      name: 'yes',
-      label: 'Ja',
-      labelColorClass: 's-viz-color-diverging-6-6',
-      voiceColorClass: 's-viz-color-diverging-6-4'
-    },
-    {
-      name: 'no',
-      label: 'Nein',
-      labelColorClass: 's-viz-color-diverging-6-1',
-      voiceColorClass: 's-viz-color-diverging-6-3'
-    },
-    {
-      name: 'undecided',
-      label: 'Stimmfreigabe',
-      labelColorClass: 's-color-gray-10',
-      voiceColorClass: 's-color-gray-4'
-    }
-  ]
-
   export default {
-    data: () => {
-      return {
-        positions: positions
+    computed: {
+      hideTitle: (toolRuntimeConfig) => toolRuntimeConfig && toolRuntimeConfig.displayOptions && toolRuntimeConfig.displayOptions.hideTitle,
+      majority: (totalSeats) => Math.floor(totalSeats / 2 + 1),
+      augmentedPossibleCoalitions: (totalSeats, possibleCoalitions, parties) => {
+        
+        // augment coaltion's party references with full data and calculate its seat total
+        return possibleCoalitions.map(coalition => {
+          
+          let totalCoalitionPercents = 0;
+          let totalCoalitionSeats = 0;
+          let coalitionParties = coalition.map(party => {
+            
+            if (party === null) {
+              return undefined;
+            }
+
+            // augment coalition party with full party data using the party name as reference
+            let augmentedParty = parties.find(p => p.id === party.id);
+            if (augmentedParty === undefined) {
+              return undefined;
+            }
+            
+            // additionally augment the party with properties to render its name and bar chart markup 
+            augmentedParty.useClass = augmentedParty.color.classAttribute !== undefined && augmentedParty.color.classAttribute !== '';
+            augmentedParty.fontStyle = "";
+            const partyPercents = totalSeats ? Math.round(augmentedParty.seats / totalSeats * 100) : 0;
+            totalCoalitionPercents += partyPercents;
+            totalCoalitionSeats += augmentedParty.seats || 0;
+            augmentedParty.barStyle = `width: ${ partyPercents }%;`;
+            if (augmentedParty.useClass) {
+              augmentedParty.barStyle += 'background-color: currentColor';
+            } else {
+              augmentedParty.fontStyle = `color: ${augmentedParty.color.colorCode}`
+              augmentedParty.barStyle += `background-color: ${augmentedParty.color.colorCode}`
+            }
+            return augmentedParty;
+          }).filter(p => p !== undefined);
+
+          if (coalitionParties.length > 0) {
+            return {
+              parties: coalitionParties,
+              totalPercents: totalCoalitionPercents,
+              totalSeats: totalCoalitionSeats
+            };
+          } else {
+            return undefined;
+          }
+
+        }).filter(c => c !== undefined);
       }
     }
   };
