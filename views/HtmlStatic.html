@@ -21,7 +21,7 @@
     <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-text-s">
       {{ #each coalition.parties as party, i }}
       <span class="s-font-text s-font-text--strong {{ party.useClass ? party.color.classAttribute : '' }}" style="{{ party.fontStyle }}">{{ party.name }}</span>{{ i + 1 < coalition.parties.length ? ( i + 2  === coalition.parties.length ? ' und' : ',') : '' }}
-      {{ /each }}komm{{ coalition.parties.length > 1 ? 'en gemeinsam' : 't' }} auf {{ coalition.totalSeats }} Abgeordnete ({{ coalition.totalPercents }}%).
+      {{ /each }}komm{{ coalition.parties.length > 1 ? 'en gemeinsam' : 't' }} auf {{ coalition.totalSeats }} Abgeordnete{{ #if totalSeats > 0 }} ({{ coalition.totalPercents }}%){{ /if }}.
     </div>
   </div>
   {{ /each }}
@@ -59,8 +59,7 @@
             // additionally augment the party with properties to render its name and bar chart markup 
             augmentedParty.useClass = augmentedParty.color.classAttribute !== undefined && augmentedParty.color.classAttribute !== '';
             augmentedParty.fontStyle = "";
-            const partyPercents = totalSeats ? Math.round(augmentedParty.seats / totalSeats * 100) : 0;
-            totalCoalitionPercents += partyPercents;
+            const partyPercents = totalSeats ? (augmentedParty.seats / totalSeats * 100).toFixed(2) : 0;
             totalCoalitionSeats += augmentedParty.seats || 0;
             augmentedParty.barStyle = `width: ${ partyPercents }%;`;
             if (augmentedParty.useClass) {
@@ -71,6 +70,8 @@
             }
             return augmentedParty;
           }).filter(p => p !== undefined);
+
+          totalCoalitionPercents = Math.round(totalCoalitionSeats * 100 / totalSeats );
 
           if (coalitionParties.length > 0) {
             return {
