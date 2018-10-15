@@ -10,7 +10,7 @@
     },
 
     "totalSeats": {
-      "title": "Sitze insgesamt",
+      "title": "Sitze im Parlament insgesamt",
       "type": "number"
     },
 
@@ -24,7 +24,7 @@
         "availabilityChecks": [
           {
             "type": "ItemHasId",
-            "unavailableMessage": "Zuerst Titel erfassen und speichern um Parteien hinzuzufügen"
+            "unavailableMessage": "Bitte speichere deinen Titel um fortzufahren."
           }
         ]
       },
@@ -33,7 +33,7 @@
     },
 
     "possibleCoalitions": {
-      "title": "Koalitionen",
+      "title": "Mögliche Koalitionen",
       "type": "array",
       "Q:options": {
         "expandable": {
@@ -86,7 +86,7 @@
       "properties": {
         "id": {"$ref": "#/definitions/partyId"},
         "name": {
-          "title": "Parteiname",
+          "title": "Parteiname oder Kürzel",
           "type": "string"
         },
         "seats": {
@@ -112,8 +112,11 @@
               "Q:type": "color"
             },
             "classAttribute": {
-              "title": "CSS Klassenname",
-              "type": "string"
+              "title": "CSS-Klassenname",
+              "type": "string",
+              "Q:options": {
+                "placeholder": "s-viz-color-party-..."
+              }
             }
           }
         }
