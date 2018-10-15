@@ -59,8 +59,7 @@
             // additionally augment the party with properties to render its name and bar chart markup 
             augmentedParty.useClass = augmentedParty.color.classAttribute !== undefined && augmentedParty.color.classAttribute !== '';
             augmentedParty.fontStyle = "";
-            const partyPercents = totalSeats ? Math.round(augmentedParty.seats / totalSeats * 100) : 0;
-            totalCoalitionPercents += partyPercents;
+            const partyPercents = totalSeats ? (augmentedParty.seats / totalSeats * 100).toFixed(2) : 0;
             totalCoalitionSeats += augmentedParty.seats || 0;
             augmentedParty.barStyle = `width: ${ partyPercents }%;`;
             if (augmentedParty.useClass) {
@@ -72,6 +71,8 @@
             return augmentedParty;
           }).filter(p => p !== undefined);
 
+          totalCoalitionPercents = Math.round(totalCoalitionSeats * 100 / totalSeats );
+          
           if (coalitionParties.length > 0) {
             return {
               parties: coalitionParties,
