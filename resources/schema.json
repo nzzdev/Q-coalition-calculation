@@ -2,18 +2,22 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "title": "Koalitionsrechner",
-  "properties": {
-    
+  "properties": { 
     "title": {
       "title": "Titel",
+      "type": "string",
+      "Q:options": {
+        "placeholder": "Der Titel bringt die Kernaussage des Koalitionsrechners auf den Punkt&#46;"
+      }
+    },
+    "subtitle": {
+      "title": "Untertitel",
       "type": "string"
     },
-
     "totalSeats": {
       "title": "Sitze im Parlament insgesamt",
       "type": "number"
     },
-
     "parties": {
       "title": "Parteien",
       "type": "array",
@@ -33,7 +37,6 @@
       "items": {"$ref": "#/definitions/party"}
     
     },
-
     "possibleCoalitions": {
       "title": "Mögliche Koalitionen",
       "type": "array",
@@ -77,7 +80,39 @@
         }
       }
     },
-    
+    "sources": {
+      "title": "Quelle(n)",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "title": "Quelle",
+        "properties": {
+          "text": {
+            "title": "Quelle",
+            "type": "string"
+          },
+          "link": {
+            "Q:type": "link",
+            "title": "Link",
+            "type": "object",
+            "Q:options": {
+              "placeholder": "Direktlink zur Quelle, http://&#46;&#46;&#46;"
+            },
+            "properties": {
+              "url": {
+                "title": "Url",
+                "type": "string"
+              },
+              "isValid": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "required": ["text"]
+      }
+    },
+
     "notes": {
       "title": "Anmerkungen",
       "type": "string"
@@ -121,7 +156,7 @@
               "title": "CSS-Klassenname",
               "type": "string",
               "Q:options": {
-                "placeholder": "s-viz-color-party-..."
+                "placeholder": "s-viz-color-party-&#46;&#46;&#46;"
               }
             }
           }
