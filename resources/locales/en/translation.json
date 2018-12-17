@@ -1,0 +1,24 @@
+{
+  "Koalitionsrechner": "Coalition-calculation",
+  "Titel": "Title",
+  "Der Titel bringt die Kernaussage des Koalitionsrechners auf den Punkt&#46;":
+    "The title brings the core message of the coalition-calculation to the point&#46;",
+  "Untertitel": "Subtitle",
+  "Sitze im Parlament insgesamt": "Total seats in the parliament",
+  "Parteien": "Parties",
+  "Parteiname oder Kürzel": "Party name or abbr&#46;",
+  "Anzahl Sitze": "Number of seats",
+  "Parteifarbe": "Party color",
+  "Farbcode": "Color code",
+  "CSS-Klassenname": "CSS class name",
+  "Mögliche Koalitionen": "Possible coalition",
+  "Koalition": "Coalition",
+  "Daten": "Data",
+  "Quelle(n)": "Sources",
+  "Quelle": "Source",
+  "Direktlink zur Quelle, http://&#46;&#46;&#46;": "Direct link to source, http://&#46;&#46;&#46;",
+  "Text": "Text",
+  "Link": "link",
+  "Url": "Url",
+  "Anmerkungen": "Notes"
+}
