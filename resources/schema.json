@@ -24,7 +24,9 @@
         "availabilityChecks": [
           {
             "type": "ItemHasId",
-            "unavailableMessage": "Bitte speichere deinen Titel um fortzufahren."
+            "config": {
+              "unavailableMessage": "Bitte speichere deinen Titel um fortzufahren."
+            }
           }
         ]
       },
@@ -64,8 +66,10 @@
               "Q:options": {
                 "dynamicEnum": {
                   "type": "ToolEndpoint",
-                  "withData": true,
-                  "endpoint": "dynamic-enum/availableParties"
+                  "config": {
+                    "endpoint": "dynamic-enum/availableParties",
+                    "fields": ["parties"]
+                  }
                 }
               }
             }
@@ -101,7 +105,9 @@
             "availabilityChecks": [
               {
                 "type": "UserHasRole",
-                "role": "expert-coalition-calculation"
+                "config": {
+                  "role": "expert-coalition-calculation"
+                }
               }
             ]
           },
