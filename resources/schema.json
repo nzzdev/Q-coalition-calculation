@@ -24,7 +24,9 @@
         "availabilityChecks": [
           {
             "type": "ItemHasId",
-            "unavailableMessage": "Bitte speichere deinen Titel um fortzufahren."
+            "config": {
+              "unavailableMessage": "Bitte speichere deinen Titel um fortzufahren."
+            }
           }
         ]
       },
@@ -103,7 +105,9 @@
             "availabilityChecks": [
               {
                 "type": "UserHasRole",
-                "role": "expert-coalition-calculation"
+                "config": {
+                  "role": "expert-coalition-calculation"
+                }
               }
             ]
           },
