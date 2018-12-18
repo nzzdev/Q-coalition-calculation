@@ -2,9 +2,11 @@
   {{ #if hideTitle !== true && title }}
     <h3 class="s-q-item__title">{{ title }}</h3>
   {{ /if }}
-  <div class="s-q-item__subtitle s-font-note">
-    {{#if subtitle}} {{subtitle}} {{/if}}
-  </div>
+  {{#if subtitle}} 
+    <div class="s-q-item__subtitle s-font-note">
+      {{subtitle}}
+    </div>
+  {{/if}}
   {{ #each augmentedPossibleCoalitions as coalition, i }}
   <div class="q-coalition-calculation-row">
     <div class="q-coalition-calculation-column s-color-gray-3 q-coalition-calculation-barchart-container">
