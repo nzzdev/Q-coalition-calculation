@@ -23,7 +23,7 @@ $space-between-elements: 15px;
 
 .q-coalition-calculation-row {
   display: flex;
-  margin-top: 31px;
+  padding: 30px 0px 10px;
   flex-flow: row wrap;
   margin-right: -$space-between-elements;
 }
@@ -45,6 +45,7 @@ $space-between-elements: 15px;
   margin: 0px;
   align-self: center;
   margin-right: $space-between-elements;
+  margin-bottom: 20px;
 }
 
 .q-coalition-calculation-barchart-bar {
