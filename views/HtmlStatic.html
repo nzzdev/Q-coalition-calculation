@@ -2,6 +2,11 @@
   {{ #if hideTitle !== true && title }}
     <h3 class="s-q-item__title">{{ title }}</h3>
   {{ /if }}
+  {{#if subtitle}} 
+    <div class="s-q-item__subtitle">
+      {{subtitle}}
+    </div>
+  {{/if}}
   {{ #each augmentedPossibleCoalitions as coalition, i }}
   <div class="q-coalition-calculation-row">
     <div class="q-coalition-calculation-column s-color-gray-3 q-coalition-calculation-barchart-container">
@@ -25,11 +30,16 @@
     </div>
   </div>
   {{ /each }}
-  {{ #if notes }}
   <div class="s-q-item__footer">
-    <span class="s-q-item__footer__notes">{{ notes }}</span>
+    {{ #if notes }}{{ notes }}{{/if}}{{ #if sources !== undefined && sources.length > 0 }}{{ #if notes }}&nbsp;&ndash;&nbsp;{{/if}}{{#if sources.length > 1}}Quellen: {{else}}Quelle: {{/if}} 
+      {{#each sources as source, index}}
+        <!-- 	If you separate DOM siblings with newlines whitespaces cannot be removed by svelte renderer
+              To avoid unwanted whitespaces around commas separating each source, we keep render infos for sources at one line here.
+              See also: https://github.com/sveltejs/svelte/issues/189  -->
+        {{#if source.text !== ''}}{{#if source.link && source.link.url && source.link.isValid}}<a href="{{source.link.url}}" target="blank" rel="noopener noreferrer">{{source.text}}</a>{{else}}{{source.text}}{{/if}}{{#if index !== sources.length - 1 && sources[index + 1] !== ''}}, {{/if}}{{/if}}
+      {{/each}} 
+    {{/if}}
   </div>
-  {{/if}}
 </div>
 
 <script>
