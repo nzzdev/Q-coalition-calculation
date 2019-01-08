@@ -1,9 +1,9 @@
-const Boom = require('boom');
-const Joi = require('joi');
+const Boom = require("boom");
+const Joi = require("joi");
 
 module.exports = {
-  method: 'POST',
-  path: '/dynamic-enum/{optionName}',
+  method: "POST",
+  path: "/dynamic-enum/{optionName}",
   config: {
     validate: {
       payload: Joi.object()
@@ -11,16 +11,16 @@ module.exports = {
     cors: true
   },
   handler: function(request, h) {
-    if (request.params.optionName === 'availableParties') {
-      let partyNames = request.payload.value.parties.map(p => p.name);
-      let partyIds = request.payload.value.parties.map(p => p.id);
+    const item = request.payload.value.item;
+    if (request.params.optionName === "availableParties") {
+      let partyNames = item.parties.map(p => p.name);
+      let partyIds = item.parties.map(p => p.id);
       let options = {
         enum: [null].concat(partyIds),
-        enum_titles: [''].concat(partyNames)
+        enum_titles: [""].concat(partyNames)
       };
       return options;
     }
-
     return Boom.badRequest();
   }
 };

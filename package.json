@@ -1,6 +1,6 @@
 {
   "name": "@nzz/q-coalition-calculation",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Q Coalition Calculation",
   "keywords": [
     "storytelling",
@@ -23,6 +23,10 @@
     {
       "name": "Sharon Funke",
       "email": "sharon.funke@nzz.ch"
+    },
+    {
+      "name": "Philip Küng",
+      "email": "philip.kueng@nzz.ch"
     }
   ],
   "main": "index.js",
@@ -37,19 +41,20 @@
   "dependencies": {
     "ajv": "^5.3.0",
     "autoprefixer": "^7.1.1",
+    "boom": "^7.3.0",
     "chai": "^4.0.2",
     "cssnano": "^3.10.0",
     "enjoi": "^2.1.0",
     "forever": "^0.15.3",
-    "hapi": "^17.0.1",
+    "hapi": "^17.8.1",
     "hoek": "^4.1.0",
-    "inert": "^5.0.1",
+    "inert": "^5.1.2",
     "joi": "^10.0.6",
     "jsdom": "^11.0.0",
-    "json-schema-faker": "^0.4.0",
+    "json-schema-faker": "^0.4.7",
     "mocha": "^3.2.0",
     "node-fetch": "^1.6.3",
-    "node-sass": "^4.1.1",
+    "node-sass": "^4.11.0",
     "path": "^0.12.7",
     "postcss": "^6.0.2",
     "postcss-import": "^11.0.0",

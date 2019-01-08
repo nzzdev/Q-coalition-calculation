@@ -2,6 +2,11 @@
   {{ #if hideTitle !== true && title }}
     <h3 class="s-q-item__title">{{ title }}</h3>
   {{ /if }}
+  {{#if subtitle}} 
+    <div class="s-q-item__subtitle">
+      {{subtitle}}
+    </div>
+  {{/if}}
   {{ #each augmentedPossibleCoalitions as coalition, i }}
   <div class="q-coalition-calculation-row">
     <div class="q-coalition-calculation-column s-color-gray-3 q-coalition-calculation-barchart-container">
@@ -18,18 +23,23 @@
       <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-majority-label">Mehrheit</div>
       {{ /if }}
     </div>
-    <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-text-s">
+    <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-note">
       {{ #each coalition.parties as party, i }}
-      <span class="s-font-text s-font-text--strong {{ party.useClass ? party.color.classAttribute : '' }}" style="{{ party.fontStyle }}">{{ party.name }}</span>{{ i + 1 < coalition.parties.length ? ( i + 2  === coalition.parties.length ? ' und' : ',') : '' }}
+      <span class="s-font-note s-font-note--strong {{ party.useClass ? party.color.classAttribute : '' }}" style="{{ party.fontStyle }}">{{ party.name }}</span>{{ i + 1 < coalition.parties.length ? ( i + 2  === coalition.parties.length ? ' und' : ',') : '' }}
       {{ /each }}komm{{ coalition.parties.length > 1 ? 'en gemeinsam' : 't' }} auf {{ coalition.totalSeats }} Abgeordnete{{ #if totalSeats > 0 }} ({{ coalition.totalPercents }}%){{ /if }}.
     </div>
   </div>
   {{ /each }}
-  {{ #if notes }}
   <div class="s-q-item__footer">
-    <span class="s-q-item__footer__notes">{{ notes }}</span>
+    {{ #if notes }}{{ notes }}{{/if}}{{ #if sources !== undefined && sources.length > 0 }}{{ #if notes }}&nbsp;&ndash;&nbsp;{{/if}}{{#if sources.length > 1}}Quellen: {{else}}Quelle: {{/if}} 
+      {{#each sources as source, index}}
+        <!-- 	If you separate DOM siblings with newlines whitespaces cannot be removed by svelte renderer
+              To avoid unwanted whitespaces around commas separating each source, we keep render infos for sources at one line here.
+              See also: https://github.com/sveltejs/svelte/issues/189  -->
+        {{#if source.text !== ''}}{{#if source.link && source.link.url && source.link.isValid}}<a href="{{source.link.url}}" target="blank" rel="noopener noreferrer">{{source.text}}</a>{{else}}{{source.text}}{{/if}}{{#if index !== sources.length - 1 && sources[index + 1] !== ''}}, {{/if}}{{/if}}
+      {{/each}} 
+    {{/if}}
   </div>
-  {{/if}}
 </div>
 
 <script>

@@ -42,10 +42,11 @@ $space-between-elements: 15px;
 }
 
 .q-coalition-calculation-description-container {
-  margin: 0px;
   align-self: center;
+  margin-top: 0px;
+  margin-left: 0px;
   margin-right: $space-between-elements;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .q-coalition-calculation-barchart-bar {
