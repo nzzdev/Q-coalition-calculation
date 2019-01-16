@@ -32,7 +32,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf styles && mkdir styles && node tasks/build.js",
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "lab -a code -c -P tests --verbose --leaks"
   },
   "repository": {
     "type": "git",
