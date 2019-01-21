@@ -32,7 +32,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf styles && mkdir styles && node tasks/build.js",
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "lab -a code -c -P tests --verbose --leaks"
   },
   "repository": {
     "type": "git",
@@ -42,7 +42,6 @@
     "ajv": "^5.3.0",
     "autoprefixer": "^7.1.1",
     "boom": "^7.3.0",
-    "chai": "^4.0.2",
     "cssnano": "^3.10.0",
     "enjoi": "^2.1.0",
     "forever": "^0.15.3",
@@ -50,14 +49,16 @@
     "hoek": "^4.1.0",
     "inert": "^5.1.2",
     "joi": "^10.0.6",
-    "jsdom": "^11.0.0",
-    "json-schema-faker": "^0.4.7",
-    "mocha": "^3.2.0",
     "node-fetch": "^1.6.3",
     "node-sass": "^4.11.0",
     "path": "^0.12.7",
     "postcss": "^6.0.2",
     "postcss-import": "^11.0.0",
     "svelte": "1.22.3"
+  },
+  "devDependencies": {
+    "code": "^5.2.4",
+    "jsdom": "^13.1.0",
+    "lab": "^18.0.1"
   }
 }
