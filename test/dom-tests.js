@@ -40,6 +40,13 @@ function element(markup, selector) {
   });
 }
 
+function elements(markup, selector) {
+  return new Promise((resolve, reject) => {
+    const dom = new JSDOM(markup);
+    resolve(dom.window.document.querySelectorAll(selector));
+  });
+}
+
 function elementCount(markup, selector) {
   return new Promise((resolve, reject) => {
     const dom = new JSDOM(markup);
@@ -117,4 +124,25 @@ lab.experiment("Q coalition calculation markup check", function () {
       expect(value).to.be.equal(7);
     });
   });
+
+  it("should display the colors applied to the coalition", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/html-static",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/single-coalition.json"),
+        toolRuntimeConfig: {}
+      }
+    });
+
+    return elements(response.result.markup, "div.q-coalition-calculation-column").then(elements => {
+      console.log(elements[1])
+      let coalition = elements[0].querySelectorAll("div.q-coalition-calculation-barchart-bar");
+      console.log(coalition)
+      expect(coalition[0].style.backgroundColor).to.be.equals("rgb(240, 162, 0)")
+      expect(coalition[0].style.width).to.be.equals("30.00%")
+      expect(coalition[1].style.backgroundColor).to.be.equals("rgb(246, 56, 50)");
+      expect(coalition[1].style.width).to.be.equals("20.00%")
+    })
+  })
 });
