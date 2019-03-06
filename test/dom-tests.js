@@ -136,13 +136,26 @@ lab.experiment("Q coalition calculation markup check", function () {
     });
 
     return elements(response.result.markup, "div.q-coalition-calculation-column").then(elements => {
-      console.log(elements[1])
       let coalition = elements[0].querySelectorAll("div.q-coalition-calculation-barchart-bar");
-      console.log(coalition)
       expect(coalition[0].style.backgroundColor).to.be.equals("rgb(240, 162, 0)")
       expect(coalition[0].style.width).to.be.equals("30.00%")
       expect(coalition[1].style.backgroundColor).to.be.equals("rgb(246, 56, 50)");
       expect(coalition[1].style.width).to.be.equals("20.00%")
+    })
+  })
+
+  it("should display the barchart label in the correct location", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/html-static",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/single-coalition.json"),
+        toolRuntimeConfig: {}
+      }
+    });
+
+    return element(response.result.markup, "div.q-coalition-calculation-barchart-label").then(element => {
+      expect(element.style.left).to.be.equal("50%")
     })
   })
 });
