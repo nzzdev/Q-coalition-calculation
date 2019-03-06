@@ -34,10 +34,18 @@ $ node index.js
 [to the top](#table-of-contents)
 
 ## Testing 
-Which testing framework is used and how to run the tests
+The testing framework used in this repository is Code.
+
+Run the tests:
+```
+$ npm run test
+``` 
 
 ### Implementing a new test
-Rules of when and where to implement a new test
+When changing or implementing...
+
+- A `route`, it needs to be tested in the `e2e-tests.js` file
+- Something on the frontend, it needs to be tested in the `dom-tests.js` file
 
 [to the top](#table-of-contents)
 
@@ -54,4 +62,6 @@ The tool structure follows the general structure of each Q tool. Further informa
 [to the top](#table-of-contents)
 
 ## LICENSE
-Adding the license + updating the year. 
+Copyright (c) 2019 Neue Zürcher Zeitung. All rights reserved.
+
+This software is published under the MIT license.
