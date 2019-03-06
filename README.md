@@ -49,7 +49,7 @@ When changing or implementing...
 
 [to the top](#table-of-contents)
 
-##  Tool implentation details
+##  Tool implementation details
 If a tool then it can use this reference to the Q-server documentation about Q-tools:
 
 The tool structure follows the general structure of each Q tool. Further information can be found in [Q server documentation - Developing tools](https://nzzdev.github.io/Q-server/developing-tools.html).
@@ -58,6 +58,44 @@ The tool structure follows the general structure of each Q tool. Further informa
 
 ## Features
 
+### Parties
+Each entry will require the name of the party, how many seats they achived and their party color. 
+
+#### Implementation details
+- The parties will be stored like this:
+```
+{
+  "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148795903-312092644",
+  "color": {
+    "colorCode": "#59d1ff"
+  },
+  "name": "FDP",
+  "seats": 10
+} 
+```
+- The color can be either a `colorCode` which will be set as `hex-code` or a `classAttribute` which needs to be a [viz-color](https://github.com/nzzdev/sophie-viz-color/blob/master/vars/general.json)
+
+### Coalitions
+When adding parties to the coalition, the seats will be added and displayed if taken over the majority.
+
+#### Implementation details
+- The coalitions will be stores like this:
+```
+"possibleCoalitions": [
+  [
+    {
+      "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148795903-312092644"
+    },
+    {
+      "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+    },
+    {
+      "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+    }
+  ]
+]
+```
+- The `id` of the party will be added to an array
 
 [to the top](#table-of-contents)
 
