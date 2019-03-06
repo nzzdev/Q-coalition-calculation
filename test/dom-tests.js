@@ -11,8 +11,6 @@ const after = lab.after;
 const it = lab.it;
 
 const routes = require("../routes/routes.js");
-require("svelte/ssr/register");
-const staticTpl = require("../views/HtmlStatic.html");
 
 let server;
 
@@ -49,12 +47,18 @@ function elementCount(markup, selector) {
   });
 }
 
-lab.experiment("Q coalition calculation markup check", function() {
+lab.experiment("Q coalition calculation markup check", function () {
   it("should pass if 3 row DOM elements are found", async () => {
-    const renderingData = require("../resources/fixtures/data/multiple-coalitions.json");
-    var markup = staticTpl.render(JSON.parse(JSON.stringify(renderingData)));
+    const response = await server.inject({
+      url: "/rendering-info/html-static",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/multiple-coalitions.json"),
+        toolRuntimeConfig: {}
+      }
+    });
 
-    return elementCount(markup, "div.q-coalition-calculation-row").then(
+    return elementCount(response.result.markup, "div.q-coalition-calculation-row").then(
       value => {
         expect(value).to.be.equal(3);
       }
@@ -62,11 +66,17 @@ lab.experiment("Q coalition calculation markup check", function() {
   });
 
   it("should pass if 3 description container DOM elements are found", async () => {
-    const renderingData = require("../resources/fixtures/data/multiple-coalitions.json");
-    var markup = staticTpl.render(JSON.parse(JSON.stringify(renderingData)));
+    const response = await server.inject({
+      url: "/rendering-info/html-static",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/multiple-coalitions.json"),
+        toolRuntimeConfig: {}
+      }
+    });
 
     return elementCount(
-      markup,
+      response.result.markup,
       "div.q-coalition-calculation-description-container"
     ).then(value => {
       expect(value).to.be.equal(3);
@@ -74,10 +84,16 @@ lab.experiment("Q coalition calculation markup check", function() {
   });
 
   it("should pass if 6 column DOM elements are found", async () => {
-    const renderingData = require("../resources/fixtures/data/multiple-coalitions.json");
-    var markup = staticTpl.render(JSON.parse(JSON.stringify(renderingData)));
+    const response = await server.inject({
+      url: "/rendering-info/html-static",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/multiple-coalitions.json"),
+        toolRuntimeConfig: {}
+      }
+    });
 
-    return elementCount(markup, "div.q-coalition-calculation-column").then(
+    return elementCount(response.result.markup, "div.q-coalition-calculation-column").then(
       value => {
         expect(value).to.be.equal(6);
       }
@@ -85,11 +101,17 @@ lab.experiment("Q coalition calculation markup check", function() {
   });
 
   it("should pass if 7 barchart-bar DOM elements are found", async () => {
-    const renderingData = require("../resources/fixtures/data/multiple-coalitions.json");
-    var markup = staticTpl.render(JSON.parse(JSON.stringify(renderingData)));
+    const response = await server.inject({
+      url: "/rendering-info/html-static",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/multiple-coalitions.json"),
+        toolRuntimeConfig: {}
+      }
+    });
 
     return elementCount(
-      markup,
+      response.result.markup,
       "div.q-coalition-calculation-barchart-bar"
     ).then(value => {
       expect(value).to.be.equal(7);
