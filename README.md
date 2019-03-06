@@ -13,7 +13,7 @@
 
 ## Installation
 ```
-$ git clone git@github.com:nzzdev/Q-coalation-calculation.git
+$ git clone git@github.com:nzzdev/Q-coalition-calculation.git
 $ npm install
 $ npm run build
 ```
@@ -34,7 +34,7 @@ $ node index.js
 [to the top](#table-of-contents)
 
 ## Testing 
-The testing framework used in this repository is Code.
+The testing framework used in this repository is [Code]().
 
 Run the tests:
 ```
