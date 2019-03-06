@@ -79,7 +79,6 @@ There are three options for deployment:
 ### Use the provided docker images
 
 1. Deploy `nzzonline/q-coalition-calculation` to a docker environment
-2. Set the ENV variables as described in the [configuration section](#configuration)
 
 [to the top](#table-of-contents)
 
@@ -144,6 +143,14 @@ When adding parties to the coalition, the seats will be added and displayed if t
 
 ### Options
 
-There are on options for this tool.
+There are no options for this tool.
+
+#### Display Options
+
+Display options can be set before embedding the graphic in the article.
+
+##### hideTitle
+
+Allows to hide the title
 
 [to the top](#table-of-contents)
