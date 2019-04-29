@@ -54,8 +54,8 @@
     "cssnano": "^3.10.0",
     "jsdom": "^13.2.0",
     "lab": "^18.0.2",
-    "node-sass": "^4.11.0",
     "postcss": "^6.0.23",
-    "postcss-import": "^11.1.0"
+    "postcss-import": "^11.1.0",
+    "sass": "^1.19.0"
   }
 }
