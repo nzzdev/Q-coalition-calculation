@@ -32,7 +32,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf styles && mkdir styles && node tasks/build.js",
-    "test": "lab -a code -c -P tests --verbose --leaks"
+    "test": "lab -a @hapi/code -c -P tests --verbose --leaks"
   },
   "repository": {
     "type": "git",
@@ -49,11 +49,11 @@
     "svelte": "1.22.3"
   },
   "devDependencies": {
+    "@hapi/lab": "^18.1.2",
+    "@hapi/code": "^5.3.1",
     "autoprefixer": "^7.2.6",
-    "code": "^5.2.4",
     "cssnano": "^3.10.0",
     "jsdom": "^13.2.0",
-    "lab": "^18.0.2",
     "postcss": "^6.0.23",
     "postcss-import": "^11.1.0",
     "sass": "^1.19.0"
