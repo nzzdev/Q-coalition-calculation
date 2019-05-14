@@ -1,6 +1,6 @@
-const Lab = require("lab");
-const Code = require("code");
-const Hapi = require("hapi");
+const Lab = require("@hapi/lab");
+const Code = require("@hapi/code");
+const Hapi = require("@hapi/hapi");
 const lab = (exports.lab = Lab.script());
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
@@ -54,7 +54,7 @@ function elementCount(markup, selector) {
   });
 }
 
-lab.experiment("Q coalition calculation markup check", function () {
+lab.experiment("Q coalition calculation markup check", function() {
   it("should pass if 3 row DOM elements are found", async () => {
     const response = await server.inject({
       url: "/rendering-info/html-static",
@@ -65,11 +65,12 @@ lab.experiment("Q coalition calculation markup check", function () {
       }
     });
 
-    return elementCount(response.result.markup, "div.q-coalition-calculation-row").then(
-      value => {
-        expect(value).to.be.equal(3);
-      }
-    );
+    return elementCount(
+      response.result.markup,
+      "div.q-coalition-calculation-row"
+    ).then(value => {
+      expect(value).to.be.equal(3);
+    });
   });
 
   it("should pass if 3 description container DOM elements are found", async () => {
@@ -100,11 +101,12 @@ lab.experiment("Q coalition calculation markup check", function () {
       }
     });
 
-    return elementCount(response.result.markup, "div.q-coalition-calculation-column").then(
-      value => {
-        expect(value).to.be.equal(6);
-      }
-    );
+    return elementCount(
+      response.result.markup,
+      "div.q-coalition-calculation-column"
+    ).then(value => {
+      expect(value).to.be.equal(6);
+    });
   });
 
   it("should pass if 7 barchart-bar DOM elements are found", async () => {
@@ -135,14 +137,23 @@ lab.experiment("Q coalition calculation markup check", function () {
       }
     });
 
-    return elements(response.result.markup, "div.q-coalition-calculation-column").then(elements => {
-      let coalition = elements[0].querySelectorAll("div.q-coalition-calculation-barchart-bar");
-      expect(coalition[0].style.backgroundColor).to.be.equals("rgb(240, 162, 0)")
-      expect(coalition[0].style.width).to.be.equals("30.00%")
-      expect(coalition[1].style.backgroundColor).to.be.equals("rgb(246, 56, 50)");
-      expect(coalition[1].style.width).to.be.equals("20.00%")
-    })
-  })
+    return elements(
+      response.result.markup,
+      "div.q-coalition-calculation-column"
+    ).then(elements => {
+      let coalition = elements[0].querySelectorAll(
+        "div.q-coalition-calculation-barchart-bar"
+      );
+      expect(coalition[0].style.backgroundColor).to.be.equals(
+        "rgb(240, 162, 0)"
+      );
+      expect(coalition[0].style.width).to.be.equals("30.00%");
+      expect(coalition[1].style.backgroundColor).to.be.equals(
+        "rgb(246, 56, 50)"
+      );
+      expect(coalition[1].style.width).to.be.equals("20.00%");
+    });
+  });
 
   it("should display the barchart label in the correct location", async () => {
     const response = await server.inject({
@@ -154,8 +165,11 @@ lab.experiment("Q coalition calculation markup check", function () {
       }
     });
 
-    return element(response.result.markup, "div.q-coalition-calculation-barchart-label").then(element => {
-      expect(element.style.left).to.be.equal("50%")
-    })
-  })
+    return element(
+      response.result.markup,
+      "div.q-coalition-calculation-barchart-label"
+    ).then(element => {
+      expect(element.style.left).to.be.equal("50%");
+    });
+  });
 });
