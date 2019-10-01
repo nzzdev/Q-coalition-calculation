@@ -12,6 +12,7 @@ Q election executive is one tool of the Q toolbox to display results of executiv
 - [Testing](#testing)
 - [Deployment](#deployment)
 - [Functionality](#functionality)
+- [License](#license)
 
 ## Installation
 
@@ -152,5 +153,13 @@ Display options can be set before embedding the graphic in the article.
 ##### hideTitle
 
 Allows to hide the title
+
+[to the top](#table-of-contents)
+
+## License
+
+Copyright (c) 2019 Neue Zürcher Zeitung. All rights reserved.
+
+This software is published under the [MIT](LICENSE) license.
 
 [to the top](#table-of-contents)
