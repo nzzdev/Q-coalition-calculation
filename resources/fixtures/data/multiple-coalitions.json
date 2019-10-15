@@ -1,0 +1,70 @@
+{
+  "title": "FIXTURE: Multiple coalitions",
+  "parties": [
+    {
+      "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148795903-312092644",
+      "color": {
+        "colorCode": "#59d1ff"
+      },
+      "name": "FDP",
+      "seats": 10
+    },
+    {
+      "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397",
+      "color": {
+        "colorCode": "#f63832"
+      },
+      "name": "SVP",
+      "seats": 20
+    },
+    {
+      "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148817318-867621546",
+      "color": {
+        "colorCode": "#f0a200"
+      },
+      "name": "BDP",
+      "seats": 30
+    }
+  ],
+  "possibleCoalitions": [
+    [
+      {
+        "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148795903-312092644"
+      },
+      {
+        "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+      },
+      {
+        "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+      }
+    ],
+    [
+      {
+        "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148795903-312092644"
+      },
+      {
+        "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+      }
+    ],
+    [
+      {
+        "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148817318-867621546"
+      },
+      {
+        "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+      }
+    ]
+  ],
+  "sources": [
+    {
+      "link": {
+        "url": "https://nzz.ch",
+        "isValid": true
+      },
+      "text": "NZZ"
+    }
+  ],
+  "totalSeats": 100,
+  "notes": "Test",
+  "subtitle": "This is a subtitle"
+}

@@ -1,6 +1,6 @@
 {
   "name": "@nzz/q-coalition-calculation",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Q Coalition Calculation",
   "keywords": [
     "storytelling",
@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/nzzdev/Q-coalition-calculation/issues"
   },
-  "license": "",
+  "license": "MIT",
   "contributors": [
     {
       "name": "Balz Rittmeyer",
@@ -32,32 +32,30 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf styles && mkdir styles && node tasks/build.js",
-    "test": "./node_modules/mocha/bin/mocha"
+    "test": "lab -a @hapi/code -c -P tests --verbose --leaks"
   },
   "repository": {
     "type": "git",
     "url": "http://github.com/nzzdev/Q-coalition-calculation"
   },
   "dependencies": {
-    "ajv": "^5.3.0",
-    "autoprefixer": "^7.1.1",
-    "boom": "^7.3.0",
-    "chai": "^4.0.2",
-    "cssnano": "^3.10.0",
-    "enjoi": "^2.1.0",
-    "forever": "^0.15.3",
-    "hapi": "^17.8.1",
-    "hoek": "^4.1.0",
-    "inert": "^5.1.2",
-    "joi": "^10.0.6",
-    "jsdom": "^11.0.0",
-    "json-schema-faker": "^0.4.7",
-    "mocha": "^3.2.0",
-    "node-fetch": "^1.6.3",
-    "node-sass": "^4.11.0",
+    "@hapi/boom": "^7.4.2",
+    "@hapi/hapi": "^18.4.0",
+    "@hapi/hoek": "^6.2.1",
+    "@hapi/inert": "^5.2.2",
+    "@hapi/joi": "^15.0.0",
+    "ajv": "^6.10.2",
     "path": "^0.12.7",
-    "postcss": "^6.0.2",
-    "postcss-import": "^11.0.0",
     "svelte": "1.22.3"
+  },
+  "devDependencies": {
+    "@hapi/lab": "^18.1.2",
+    "@hapi/code": "^5.3.1",
+    "autoprefixer": "^7.2.6",
+    "cssnano": "^3.10.0",
+    "jsdom": "^13.2.0",
+    "postcss": "^6.0.23",
+    "postcss-import": "^11.1.0",
+    "sass": "^1.23.0"
   }
 }
