@@ -11,7 +11,7 @@ module.exports = {
     cors: true
   },
   handler: function(request, h) {
-    const item = request.payload.value.item;
+    const item = request.payload.item;
     if (request.params.optionName === "availableParties") {
       let partyNames = item.parties.map(p => p.name);
       let partyIds = item.parties.map(p => p.id);
