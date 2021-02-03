@@ -17,10 +17,10 @@
         ></div>
       {{ /each }}
       {{ #if totalSeats && coalition.totalSeats > 0}}
-      <div class="q-coalition-calculation-barchart-label s-font-note-s s-font-note-s-strong" style="left: {{ coalition.totalPercents }}%;">{{ coalition.totalSeats }}{{ i === 0 ? " Abgeordnete" : "" }}</div>
-      <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-majority-label">{{ i === 0 ? "Mehrheit: " : "" }}{{ majority }}</div>
+      <div class="q-coalition-calculation-barchart-label s-font-note-s s-font-note--tabularnums s-font-note-s-strong" style="left: {{ coalition.totalPercents }}%;">{{ coalition.totalSeats }}{{ i === 0 ? " Abgeordnete" : "" }}</div>
+      <div class="s-font-note-s s-font-note--tabularnums s-color-gray-5 q-coalition-calculation-majority-label">{{ i === 0 ? "Mehrheit: " : "" }}{{ majority }}</div>
       {{ elseif i === 0 }}
-      <div class="s-font-note-s s-color-gray-5 q-coalition-calculation-majority-label">Mehrheit</div>
+      <div class="s-font-note-s s-font-note--tabularnums s-color-gray-5 q-coalition-calculation-majority-label">Mehrheit</div>
       {{ /if }}
     </div>
     <div class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-note">
