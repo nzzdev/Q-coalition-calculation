@@ -1,6 +1,6 @@
 {
   "name": "@nzz/q-coalition-calculation",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Q Coalition Calculation",
   "keywords": [
     "storytelling",
@@ -39,23 +39,23 @@
     "url": "http://github.com/nzzdev/Q-coalition-calculation"
   },
   "dependencies": {
-    "@hapi/boom": "^7.4.2",
-    "@hapi/hapi": "^18.4.0",
-    "@hapi/hoek": "^6.2.1",
+    "@hapi/boom": "^7.4.11",
+    "@hapi/hapi": "^18.4.1",
+    "@hapi/hoek": "^6.2.4",
     "@hapi/inert": "^5.2.2",
-    "@hapi/joi": "^15.0.0",
-    "ajv": "^6.10.2",
+    "@hapi/joi": "^15.1.1",
+    "ajv": "^6.12.6",
     "path": "^0.12.7",
     "svelte": "1.22.3"
   },
   "devDependencies": {
-    "@hapi/lab": "^18.1.2",
     "@hapi/code": "^5.3.1",
+    "@hapi/lab": "^18.1.2",
     "autoprefixer": "^7.2.6",
     "cssnano": "^3.10.0",
     "jsdom": "^13.2.0",
     "postcss": "^6.0.23",
     "postcss-import": "^11.1.0",
-    "sass": "^1.23.0"
+    "sass": "^1.32.7"
   }
 }
