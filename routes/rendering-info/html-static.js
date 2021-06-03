@@ -1,5 +1,5 @@
-const Joi = require("@hapi/joi");
 const Boom = require("@hapi/boom");
+const Joi = require("joi");
 const fs = require("fs");
 const resourcesDir = __dirname + "/../../resources/";
 const viewsDir = __dirname + "/../../views/";
