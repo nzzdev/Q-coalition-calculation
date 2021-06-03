@@ -1,5 +1,4 @@
 const Boom = require("@hapi/boom");
-const Joi = require("joi");
 const fs = require("fs");
 const resourcesDir = __dirname + "/../../resources/";
 const viewsDir = __dirname + "/../../views/";
@@ -11,7 +10,7 @@ const schemaString = JSON.parse(
 );
 
 const Ajv = require("ajv");
-const ajv = new Ajv();
+const ajv = new Ajv({strict: false});
 
 const validate = ajv.compile(schemaString);
 
