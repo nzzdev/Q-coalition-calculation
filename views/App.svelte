@@ -97,7 +97,7 @@
         />
       </div>
       <div
-        class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-note"
+        class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-note s-color-gray-7"
       >
         <BarChartDescription {coalition} totalSeats={item.totalSeats} />
       </div>
@@ -109,10 +109,10 @@
 <style>
   .q-coalition-calculation-row {
     display: flex;
-    padding: 11px 0px 10px;
     flex-flow: row wrap;
     justify-content: stretch;
     margin-right: -15px;
+    padding: 15px 0;
   }
 
   .q-coalition-calculation-column {
