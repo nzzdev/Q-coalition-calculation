@@ -121,7 +121,7 @@ lab.experiment("Q coalition calculation markup check", function() {
 
     return elementCount(
       response.result.markup,
-      "div.q-coalition-calculation-barchart-bar"
+      "div.q-coalition-calculation-barchart-bar__row"
     ).then(value => {
       expect(value).to.be.equal(7);
     });
@@ -142,7 +142,7 @@ lab.experiment("Q coalition calculation markup check", function() {
       "div.q-coalition-calculation-column"
     ).then(elements => {
       let coalition = elements[0].querySelectorAll(
-        "div.q-coalition-calculation-barchart-bar"
+        "div.q-coalition-calculation-barchart-bar__row"
       );
       expect(coalition[0].style.backgroundColor).to.be.equals(
         "rgb(240, 162, 0)"
