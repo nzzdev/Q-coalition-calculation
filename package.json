@@ -44,7 +44,7 @@
     "@hapi/inert": "^6.0.3",
     "ajv": "^8.5.0",
     "joi": "^17.4.0",
-    "svelte": "1.22.3"
+    "svelte": "3.38.2"
   },
   "devDependencies": {
     "@hapi/lab": "^24.2.1",

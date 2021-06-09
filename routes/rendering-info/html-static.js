@@ -10,7 +10,7 @@ const schemaString = JSON.parse(
 );
 
 const Ajv = require("ajv");
-const ajv = new Ajv({strict: false});
+const ajv = new Ajv({ strict: false });
 
 const validate = ajv.compile(schemaString);
 
@@ -32,24 +32,31 @@ async function validatePayload(payload, options) {
   return payload;
 }
 
-require("svelte/ssr/register");
-const staticTpl = require(`${viewsDir}/HtmlStatic.html`);
+require("svelte/register");
+const staticTemplate = require(viewsDir + "App.svelte").default;
 module.exports = {
   method: "POST",
   path: "/rendering-info/html-static",
   config: {
     validate: {
       options: {
-        allowUnknown: true
+        allowUnknown: true,
       },
-      payload: validatePayload
+      payload: validatePayload,
     },
     cache: false, // do not send cache control header to let it be added by Q Server
-    cors: true
+    cors: true,
   },
-  handler: function(request, h) {
+  handler: function (request, h) {
     // gray levels are limited to these specific ones because others are either used or too light
     const defaultGrayLevels = [4, 5, 6, 7, 8, 9];
+    const toolRuntimeConfig = request.payload.toolRuntimeConfig;
+
+    // basic context information
+    const context = {
+      id: `q_coalition-calculation_${toolRuntimeConfig.requestId}`,
+      displayOptions: toolRuntimeConfig.displayOptions || {},
+    };
 
     // if party has no color we assign a gray level as default
     request.payload.item.parties.map((party, index) => {
@@ -60,27 +67,28 @@ module.exports = {
         party.color = {
           classAttribute: `s-color-gray-${
             defaultGrayLevels[index % defaultGrayLevels.length]
-          }`
+          }`,
         };
       }
       return party;
     });
 
-    let renderData = Object.assign(
-      { toolRuntimeConfig: request.payload.toolRuntimeConfig },
-      request.payload.item
-    );
+    context.item = request.payload.item
+    const staticTemplateRender = staticTemplate.render(context);
 
     let responseData = {
       toolRuntimeConfig: request.payload.toolRuntimeConfig,
       stylesheets: [
         {
-          name: styleHashMap.default
-        }
+          content: staticTemplateRender.css.code,
+        },
+        {
+          name: styleHashMap.default,
+        },
       ],
-      markup: staticTpl.render(renderData)
+      markup: staticTemplateRender.html,
     };
 
     return responseData;
-  }
+  },
 };
