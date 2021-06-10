@@ -66,10 +66,10 @@
                 }
               ],
               "Q:options": {
-                "dynamicEnum": {
+                "dynamicSchema": {
                   "type": "ToolEndpoint",
                   "config": {
-                    "endpoint": "dynamic-enum/availableParties",
+                    "endpoint": "dynamic-schema/availableParties",
                     "fields": ["parties"]
                   }
                 }
