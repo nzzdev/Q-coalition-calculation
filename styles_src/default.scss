@@ -1,6 +1,4 @@
 
-$space-between-elements: 15px;
-
 .q-coalition-calculation {
   opacity: 1 !important;
   box-sizing: border-box;
@@ -8,71 +6,4 @@ $space-between-elements: 15px;
 
 .q-coalition-calculation * {
   box-sizing: inherit;
-}
-
-.q-coalition-calculation-majority-label {
-  position: absolute;
-  top: 100%;
-  text-align: left;
-  border-left: 1px solid currentColor;
-  left: 50%;
-  padding: 3px 0 0 3px;
-  font-size: 12px;
-  line-height: 1;
-}
-
-.q-coalition-calculation-row {
-  display: flex;
-  padding: 30px 0px 10px;
-  flex-flow: row wrap;
-  margin-right: -$space-between-elements;
-}
-
-.q-coalition-calculation-column {
-  flex: 1 0 (280px - $space-between-elements);
-}
-
-.q-coalition-calculation-barchart-container {
-  background: currentColor;
-  position: relative;
-  display: flex;
-  height: 42px;
-  margin-right: $space-between-elements;
-  margin-bottom: 20px;
-}
-
-.q-coalition-calculation-description-container {
-  align-self: center;
-  margin-top: 0px;
-  margin-left: 0px;
-  margin-right: $space-between-elements;
-  margin-bottom: 8px;
-}
-
-.q-coalition-calculation-barchart-bar {
-  height: 100%;
-  flex-shrink: 0;
-  flex-grow: 0;  
-}
-
-.q-coalition-calculation-barchart-label {
-  position: absolute;
-  top: -19px;
-  width: 100px;
-  text-align: center;
-  margin-left: -50px;
-  font-weight: bold;
-
-  &:after {
-    content: "";
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 4px 3px 0 3px;
-    border-color: currentColor transparent transparent transparent;
-    left: 50%;
-    margin-left: -3px;
-    top: 15px;
-    position: absolute;
-  }
 }
