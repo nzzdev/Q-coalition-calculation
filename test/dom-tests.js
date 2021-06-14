@@ -121,7 +121,7 @@ lab.experiment("Q coalition calculation markup check", function() {
 
     return elementCount(
       response.result.markup,
-      "div.q-coalition-calculation-barchart-bar"
+      "div.q-coalition-calculation-barchart-bar__row"
     ).then(value => {
       expect(value).to.be.equal(7);
     });
@@ -142,7 +142,7 @@ lab.experiment("Q coalition calculation markup check", function() {
       "div.q-coalition-calculation-column"
     ).then(elements => {
       let coalition = elements[0].querySelectorAll(
-        "div.q-coalition-calculation-barchart-bar"
+        "div.q-coalition-calculation-barchart-bar__row"
       );
       expect(coalition[0].style.backgroundColor).to.be.equals(
         "rgb(240, 162, 0)"
@@ -172,4 +172,40 @@ lab.experiment("Q coalition calculation markup check", function() {
       expect(element.style.left).to.be.equal("50%");
     });
   });
+
+  it("should display the text of first barchart description concat parties correct", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/html-static",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/multiple-coalitions.json"),
+        toolRuntimeConfig: {}
+      }
+    });
+
+    return element(
+      response.result.markup,
+      ".q-coalition-calculation-description-container"
+    ).then(element => {
+      expect(element.textContent).to.be.startsWith("FDP, SVP und SVP\nkommen");
+    });
+  });  
+
+  it("should display seats on text of first barchart description correct", async () => {
+    const response = await server.inject({
+      url: "/rendering-info/html-static",
+      method: "POST",
+      payload: {
+        item: require("../resources/fixtures/data/multiple-coalitions.json"),
+        toolRuntimeConfig: {}
+      }
+    });
+
+    return element(
+      response.result.markup,
+      ".q-coalition-calculation-description-container"
+    ).then(element => {
+      expect(element.textContent).to.be.contains("50\nAbgeordnete\n(50%)");
+    });
+  });  
 });
