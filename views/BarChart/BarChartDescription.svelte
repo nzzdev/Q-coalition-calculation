@@ -23,6 +23,6 @@
     style={party.fontStyle}>{party.name}</span
   >{@html partySeperation(i)}
 {/each}
-{coalitionName ? `(${coalitionName})`:""} komm{coalition.parties.length > 1 ? "en gemeinsam" : "t"} auf {coalition.totalSeats}
+{coalitionName ? `(${coalitionName}) `:""}komm{coalition.parties.length > 1 ? "en gemeinsam" : "t"} auf {coalition.totalSeats}
 Abgeordnete
 {#if totalSeats > 0}({coalition.totalPercents}%){/if}.
