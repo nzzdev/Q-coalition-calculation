@@ -32,6 +32,19 @@
               "unavailableMessage": "Bitte speichere deinen Titel um fortzufahren."
             }
           }
+        ],
+        "notificationChecks": [
+          {
+            "type": "ToolEndpoint",
+            "config": {
+              "endpoint": "notification/checkNumberSeatExceeded",
+              "fields": ["totalSeats", "parties"]
+            },
+            "priority": {
+              "type": "low",
+              "value": 1
+            }
+          }
         ]
       },
       "items": { "$ref": "#/definitions/party" }
