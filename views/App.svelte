@@ -25,7 +25,7 @@
       .map((coalition) => {
         let totalCoalitionPercents = 0;
         let totalCoalitionSeats = 0;
-        let coalitionParties = coalition
+        let coalitionParties = coalition.parties
           .map((party) => {
             if (party === null) {
               return undefined;
@@ -63,6 +63,7 @@
 
         if (coalitionParties.length > 0) {
           return {
+            name: coalition.name,
             parties: coalitionParties,
             totalPercents: totalCoalitionPercents,
             totalSeats: totalCoalitionSeats,
@@ -99,7 +100,7 @@
       <div
         class="q-coalition-calculation-column q-coalition-calculation-description-container s-font-note s-color-gray-7"
       >
-        <BarChartDescription {coalition} totalSeats={item.totalSeats} />
+        <BarChartDescription {coalition} coalitionName={coalition.name} totalSeats={item.totalSeats} />
       </div>
     </div>
   {/each}
