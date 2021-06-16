@@ -1,6 +1,5 @@
 <script>
   export let coalition;
-  export let coalitionName;
 
   function partySeperation(i) {
     if (i + 1 >= coalition.parties.length) {

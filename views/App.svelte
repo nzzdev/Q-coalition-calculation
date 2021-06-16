@@ -106,7 +106,7 @@
       <div class="q-coalition-calculation-barchart-row">
         <div
           class="q-coalition-calculation-barchart-row__column q-coalition-calculation-barchart-row__container s-color-gray-3"
-          style={i === 0 ? "" : "margin-bottom: 16px;"}
+          style={i === 0 ? "" : "margin-bottom: 8px;"}
         >
           <div class="q-coalition-calculation-barchart-row__middle__line" />
           <BarChart parties={coalition.parties} />
@@ -148,6 +148,7 @@
     display: flex;
     justify-content: center;
     margin-top: 6px;
+    margin-bottom: -8px;
   }
   .q-coalition-calculation-barchart-row {
     display: flex;
@@ -168,7 +169,7 @@
   }
 
   .q-coalition-calculation-barchart-row__description-container {
-    align-self: center;
+    padding-top: 8px;
     margin-right: 15px;
   }
 </style>
