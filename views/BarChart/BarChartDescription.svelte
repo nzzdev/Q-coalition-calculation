@@ -1,7 +1,6 @@
 <script>
   export let coalition;
   export let coalitionName;
-  export let totalSeats;
 
   function partySeperation(i) {
     if (i + 1 >= coalition.parties.length) {
@@ -23,6 +22,4 @@
     style={party.fontStyle}>{party.name}</span
   >{@html partySeperation(i)}
 {/each}
-{coalitionName ? `(${coalitionName}) `:""}komm{coalition.parties.length > 1 ? "en gemeinsam" : "t"} auf {coalition.totalSeats}
-Abgeordnete
-{#if totalSeats > 0}({coalition.totalPercents}%){/if}.
+komm{coalition.parties.length > 1 ? "en" : "t"} derzeit auf {coalition.totalPercents}% aller Wählerstimmen.

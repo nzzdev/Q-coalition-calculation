@@ -4,6 +4,8 @@ const resourcesDir = __dirname + "/../../resources/";
 const viewsDir = __dirname + "/../../views/";
 
 const styleHashMap = require(__dirname + `/../../styles/hashMap.json`);
+const getExactPixelWidth =
+  require("../../helpers/toolRuntimeConfig.js").getExactPixelWidth;
 
 const schemaString = JSON.parse(
   fs.readFileSync(resourcesDir + "schema.json", { encoding: "utf-8" })
@@ -56,6 +58,7 @@ module.exports = {
     const context = {
       id: `q_coalition-calculation_${toolRuntimeConfig.requestId}`,
       displayOptions: toolRuntimeConfig.displayOptions || {},
+      contentWidth: getExactPixelWidth(toolRuntimeConfig)
     };
 
     // if party has no color we assign a gray level as default

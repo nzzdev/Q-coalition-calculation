@@ -15,15 +15,17 @@
 
 <style>
 .q-coalition-calculation-barchart {
-  background: currentColor;
   position: relative;
   display: flex;
-  height: 42px;
+  height: 27px;
+  background: #cecfd6;
 }
 
 .q-coalition-calculation-barchart-bar__row {
   height: 100%;
   flex-shrink: 0;
-  flex-grow: 0;  
+  flex-grow: 0;
+  border-right: 0.5px solid #fff;
+  border-left: 0.5px solid #fff;
 }
 </style>
