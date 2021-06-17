@@ -85,7 +85,7 @@ lab.experiment("Q coalition calculation markup check", function() {
 
     return elementCount(
       response.result.markup,
-      "div.q-coalition-calculation-barchart-row__description-container"
+      "div.q-coalition-calculation-description-container"
     ).then(value => {
       expect(value).to.be.equal(3);
     });
@@ -103,7 +103,7 @@ lab.experiment("Q coalition calculation markup check", function() {
 
     return elementCount(
       response.result.markup,
-      "div.q-coalition-calculation-barchart-row__column"
+      "div.q-coalition-calculation-column"
     ).then(value => {
       expect(value).to.be.equal(6);
     });
@@ -139,7 +139,7 @@ lab.experiment("Q coalition calculation markup check", function() {
 
     return elements(
       response.result.markup,
-      "div.q-coalition-calculation-barchart-row__container"
+      "div.q-coalition-calculation-column"
     ).then(elements => {
       let coalition = elements[0].querySelectorAll(
         "div.q-coalition-calculation-barchart-bar__row"
@@ -155,7 +155,7 @@ lab.experiment("Q coalition calculation markup check", function() {
     });
   });
 
-  it("should display the barchart middle text exists", async () => {
+  it("should display the barchart label in the correct location", async () => {
     const response = await server.inject({
       url: "/rendering-info/html-static",
       method: "POST",
@@ -164,12 +164,11 @@ lab.experiment("Q coalition calculation markup check", function() {
         toolRuntimeConfig: {}
       }
     });
-    console.log(response.result.markup,)
     return element(
       response.result.markup,
-      "div.q-coalition-calculation-barchart-row__middle__line"
+      "div.q-coalition-calculation-barchart-label"
     ).then(element => {
-      expect(element).to.be.exist();
+      expect(element.style.left).to.be.equal("50%");
     });
   });
 
@@ -185,7 +184,7 @@ lab.experiment("Q coalition calculation markup check", function() {
 
     return element(
       response.result.markup,
-      ".q-coalition-calculation-barchart-row__description-container"
+      ".q-coalition-calculation-description-container"
     ).then(element => {
       expect(element.textContent).to.be.startsWith("FDP, SVP und SVP\nkommen");
     });
@@ -203,9 +202,9 @@ lab.experiment("Q coalition calculation markup check", function() {
 
     return element(
       response.result.markup,
-      ".q-coalition-calculation-barchart-row__description-container"
+      ".q-coalition-calculation-description-container"
     ).then(element => {
-      expect(element.textContent).to.be.contains("FDP, SVP und SVP\nkommen derzeit auf 50%");
+      expect(element.textContent).to.be.contains("50\nAbgeordnete\n(50%)");
     });
   });
 });
