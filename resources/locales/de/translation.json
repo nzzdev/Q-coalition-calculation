@@ -1,1 +1,8 @@
-{}
+{
+  "notifications": {
+    "checkNumberSeatExceeded": {
+      "title": "Anzahl Sitze überprüfen",
+      "body": "Die Anzahl Sitze der einzelnen Parteien ergeben mehr Sitze als die gesamte Sitzanzahl des Parlaments."
+    }
+  }
+}

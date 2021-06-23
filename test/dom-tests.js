@@ -164,7 +164,6 @@ lab.experiment("Q coalition calculation markup check", function() {
         toolRuntimeConfig: {}
       }
     });
-
     return element(
       response.result.markup,
       "div.q-coalition-calculation-barchart-label"
@@ -189,7 +188,7 @@ lab.experiment("Q coalition calculation markup check", function() {
     ).then(element => {
       expect(element.textContent).to.be.startsWith("FDP, SVP und SVP\nkommen");
     });
-  });  
+  });
 
   it("should display seats on text of first barchart description correct", async () => {
     const response = await server.inject({
@@ -207,5 +206,5 @@ lab.experiment("Q coalition calculation markup check", function() {
     ).then(element => {
       expect(element.textContent).to.be.contains("50\nAbgeordnete\n(50%)");
     });
-  });  
+  });
 });
