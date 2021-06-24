@@ -5,6 +5,7 @@ const dynamicSchema = require("./dynamic-schema.js");
 const health = require("./health.js");
 const fixtures = require("./fixtures/data");
 const locales = require("./locales.js");
+const checkNumberSeatExceeded = require("./notifications/checkNumberSeatExceeded.js");
 
 module.exports = schema.concat([
   stylesheet,
@@ -13,4 +14,5 @@ module.exports = schema.concat([
   health,
   locales,
   fixtures,
+  checkNumberSeatExceeded,
 ]);

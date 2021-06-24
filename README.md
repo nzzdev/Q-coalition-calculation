@@ -118,7 +118,7 @@ Each entry will require the name of the party, how many seats they achived and t
 
 #### Coalitions
 
-When adding parties to the coalition, the seats will be added and displayed if taken over the majority.
+When adding parties to the coalition, the seats will be added and displayed if taken over the majority. It's possible to give the coalition a name.
 
 ##### Implementation details
 
@@ -126,18 +126,43 @@ When adding parties to the coalition, the seats will be added and displayed if t
 
 ```
 "possibleCoalitions": [
-  [
     {
-      "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148795903-312092644"
+      "name": "",
+      "parties": [
+        {
+          "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148795903-312092644"
+        },
+        {
+          "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+        },
+        {
+          "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+        }
+      ]
     },
     {
-      "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+      "name": "Jamaica Coalition",
+      "parties": [
+        {
+          "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148795903-312092644"
+        },
+        {
+          "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+        }
+      ]
     },
     {
-      "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+      "name": "",
+      "parties": [
+        {
+          "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148817318-867621546"
+        },
+        {
+          "id": "6d1fc99ca8eb5fa38e8ccca47996701c-1545148811272-606674397"
+        }
+      ]
     }
   ]
-]
 ```
 
 - The `id` of the party will be added to an array

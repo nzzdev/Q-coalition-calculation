@@ -32,6 +32,19 @@
               "unavailableMessage": "Bitte speichere deinen Titel um fortzufahren."
             }
           }
+        ],
+        "notificationChecks": [
+          {
+            "type": "ToolEndpoint",
+            "config": {
+              "endpoint": "notification/checkNumberSeatExceeded",
+              "fields": ["totalSeats", "parties"]
+            },
+            "priority": {
+              "type": "low",
+              "value": 1
+            }
+          }
         ]
       },
       "items": { "$ref": "#/definitions/party" }
@@ -49,35 +62,7 @@
           }
         ]
       },
-      "items": {
-        "title": "Koalition",
-        "type": "array",
-        "items": {
-          "title": "Partei zu Koalition",
-          "type": "object",
-          "properties": {
-            "id": {
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "type": "null"
-                }
-              ],
-              "Q:options": {
-                "dynamicSchema": {
-                  "type": "ToolEndpoint",
-                  "config": {
-                    "endpoint": "dynamic-schema/availableParties",
-                    "fields": ["parties"]
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
+      "items": { "$ref": "#/definitions/coalition" }
     },
     "sources": {
       "title": "Quelle(n)",
@@ -118,6 +103,45 @@
     }
   },
   "definitions": {
+    "coalition": {
+      "title": "Partei zu Koalition",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Koalitionsname",
+          "type": "string"
+        },
+        "parties": {
+          "title": "Partei zu Koalition",
+          "type": "array",
+          "items": {
+            "title": "Parteien",
+            "type": "object",
+            "properties": {
+              "id": {
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "Q:options": {
+                  "dynamicSchema": {
+                    "type": "ToolEndpoint",
+                    "config": {
+                      "endpoint": "dynamic-schema/availableParties",
+                      "fields": ["parties"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "party": {
       "title": "Partei",
       "type": "object",

@@ -6,8 +6,9 @@
 </script>
 
 {#if hasSeatsData}
-  <div class="q-coalition-calculation-barchart-label-container">
+  <div class:q-coalition-calculation-barchart-label-container__first-row="{isFirstRow}" class="q-coalition-calculation-barchart-label-container">
     <div
+      class:q-coalition-calculation-barchart-label__first-row="{isFirstRow}"
       class="q-coalition-calculation-barchart-label s-font-note-s s-font-note--tabularnums s-font-note-s-strong"
       style="left: {totalPercents}%;"
     >
@@ -22,7 +23,9 @@
     width: 100%;
     height: 19px;
   }
-
+  .q-coalition-calculation-barchart-label-container__first-row {
+    height: 21px;
+}
   .q-coalition-calculation-barchart-label {
     position: absolute;
     width: 100px;
@@ -41,5 +44,8 @@
     left: 50%;
     margin-left: -3px;
     top: 15px;
+  }
+  .q-coalition-calculation-barchart-label__first-row:after {
+    top: 17px;
   }
 </style>

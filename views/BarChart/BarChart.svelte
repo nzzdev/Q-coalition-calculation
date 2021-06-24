@@ -18,12 +18,12 @@
   background: currentColor;
   position: relative;
   display: flex;
-  height: 42px;
+  height: 20px;
 }
 
 .q-coalition-calculation-barchart-bar__row {
   height: 100%;
   flex-shrink: 0;
-  flex-grow: 0;  
+  flex-grow: 0;
 }
 </style>

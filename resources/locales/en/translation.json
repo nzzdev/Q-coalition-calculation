@@ -1,8 +1,7 @@
 {
   "Koalitionsrechner": "Coalition-calculation",
   "Titel": "Title",
-  "Der Titel bringt die Kernaussage des Koalitionsrechners auf den Punkt&#46;":
-    "The title brings the core message of the coalition-calculation to the point&#46;",
+  "Der Titel bringt die Kernaussage des Koalitionsrechners auf den Punkt&#46;": "The title brings the core message of the coalition-calculation to the point&#46;",
   "Untertitel": "Subtitle",
   "Sitze im Parlament insgesamt": "Total seats in the parliament",
   "Parteien": "Parties",
@@ -20,5 +19,11 @@
   "Text": "Text",
   "Link": "link",
   "Url": "Url",
-  "Anmerkungen": "Notes"
+  "Anmerkungen": "Notes",
+  "notifications": {
+    "checkNumberSeatExceeded": {
+      "title": "Check the number of seats",
+      "body": "The number of seats of the individual parties results in more seats than the total number of seats in parliament."
+    }
+  }
 }
