@@ -45,7 +45,6 @@ module.exports = {
       payload: validatePayload,
     },
     cache: false, // do not send cache control header to let it be added by Q Server
-    cors: true,
   },
   handler: function (request, h) {
     // gray levels are limited to these specific ones because others are either used or too light
