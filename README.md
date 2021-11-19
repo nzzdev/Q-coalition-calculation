@@ -1,6 +1,6 @@
 # Q Coalition Calculation [![Build Status](https://travis-ci.com/nzzdev/Q-coalition-calculation.svg?token=g43MZxbtUcZ6QyxqUoJM&branch=dev)](https://travis-ci.com/nzzdev/Q-coalition-calculation)
 
-**Maintainer**: [Manuel Roth](https://github.com/manuelroth)
+**Maintainer**: [Franco Gervasi](https://github.com/fgervasi)
 
 Q election executive is one tool of the Q toolbox to display results of executive elections. Test it in the [demo](https://editor.q.tools).
 
